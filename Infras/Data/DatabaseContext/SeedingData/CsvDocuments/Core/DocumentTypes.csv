@@ -1,0 +1,7 @@
+Id,Name,Extension,MimeType
+101,Image,.png,image/png
+102,Image,.jpg,image/jpeg
+103,Image,.jpeg,image/jpeg
+104,Csv,.csv,text/csv
+105,Video,.mp4,video/mp4
+106,Video,.mpeg,video/mpeg

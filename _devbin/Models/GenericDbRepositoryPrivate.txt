@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using svietnamAPI.Infras.Data.DatabaseContext;
+using svietnamAPI.Models.IRepositories;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities;
+using svietnamAPI.Common.Exceptions.Repositories;
+using System.Linq;
+
+namespace svietnamAPI.Models.Repositories
+{
+    public abstract partial class GenericDbRepository<TEntity, TId> : IGenericDbRepository<TEntity, TId>
+    where TId : struct
+    where TEntity : class, IBaseEntity<TId>
+    {
+        public async Task<List<TGet>> GetAllAsync<TGet>() where TGet: class, IBaseEntity<TId>
+        {
+            try
+            {
+                var entities = await _dbContext.Set<TGet>().ToListAsync();
+                return entities;
+            }
+            catch (System.Exception systemEx)
+            {
+                _logger.LogDebug(systemEx, "");
+                _logger.LogInformation(systemEx, "");
+                throw new RepositoryAppException(systemEx);
+            }
+        }
+
+        public async Task<TGet> GetByIdAsync<TGet>(TId id) where TGet: class, IBaseEntity<TId>
+        {
+            try
+            {
+                var entity = await  _dbContext.Set<TGet>().FindAsync(id);
+                return entity;
+            }
+            catch (System.Exception systemEx)
+            {
+                _logger.LogDebug(systemEx, "");
+                _logger.LogInformation(systemEx, "");
+                throw new RepositoryAppException(systemEx);
+            }
+        }
+    }
+}

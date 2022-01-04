@@ -1,0 +1,7 @@
+EF CMD
+dotnet ef migrations add
+dotnet ef database update
+
+dotnet ef migrations add --startup-project ./svietnamAPI.csproj -o ./Infras/Data/DatabaseContext/Migrations f-category-crud-init
+
+dotnet ef migrations  --project ./svietnamAPI.csproj  --startup-project ./svietnamAPI.csproj add  -o ./Infras/Data/DatabaseContext/Migrations f-category-crud-init

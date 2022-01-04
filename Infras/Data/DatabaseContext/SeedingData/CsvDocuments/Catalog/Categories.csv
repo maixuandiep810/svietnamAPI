@@ -1,0 +1,6 @@
+Id,Name,Slug,IsRoot,ParentId,ChildrenCount,ProductCount,Description,ShortDescription,BaseImageId,ThumbnailImageId,IsEnabled,IsDeleted,CreateAt,CreateBy,UpdateAt,UpdateBy
+101,Điện thoại,dien-thoai,1,,0,0,Điện thoại chất lượng số 1 Việt Nam,Điện thoại chất lượng số 1 Việt Nam,10001,10002,1,0,2020-11-12,,,
+102,Laptop,laptop,1,,0,0,Laptop chất lượng số 1 Việt Nam,Laptop chất lượng số 1 Việt Nam,10001,10002,1,0,2021-01-03,,,
+103,Tablet,tablet,1,,0,0,Tablet chất lượng số 1 Việt Nam,Tablet chất lượng số 1 Việt Nam,10001,10002,1,0,2021-01-09,,,
+104,Phụ kiện,phu-kien,1,,0,0,Phụ kiện chất lượng số 1 Việt Nam,Phụ kiện chất lượng số 1 Việt Nam,10001,10002,1,0,2021-01-03,,,
+105,Phụ kiện di động,phu-kien-di-dong,0,104,2,0,Phụ kiện di động chất lượng số 1 Việt Nam,Phụ kiện di động chất lượng số 1 Việt Nam,10001,10002,1,0,2021-01-16,,,

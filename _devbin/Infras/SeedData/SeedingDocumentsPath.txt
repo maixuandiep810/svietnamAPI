@@ -1,0 +1,17 @@
+namespace svietnamAPI.Infras.Data.DatabaseContext.SeedingData
+{
+    public static class SeedingDocumentsPath
+    {
+        //
+        //  Catalog
+        //
+        public const string Categories = "/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Catalog/Categories.csv";
+        
+        
+        //
+        //  Core
+        //
+        public const string DocumentTypes = "/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/DocumentTypes.csv";
+        public const string Documents = "/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/Documents.csv";
+    }
+}

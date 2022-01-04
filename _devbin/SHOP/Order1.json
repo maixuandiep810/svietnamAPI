@@ -1,0 +1,89 @@
+{
+    "data": [
+        {
+            "id": 8226450,
+            "code": "95861654",
+            "status": "canceled",
+            "coupon_code": null,
+            "gift_card_code": null,
+            "gift_card_amount": 0,
+            "subtotal": 17200000,
+            "grand_total": 13932000,
+            "purchased_at": "2017-10-05 15:25:05",
+            "discount": {
+                "discount_amount": 3268000,
+                "discount_coupon": 0
+            },
+            "shipping": {
+                "allow_check": true,
+                "estimation_time_min": 3,
+                "estimation_time_max": 4,
+                "delivery_address_type": 1,
+                "shipping_amount": 0,
+                "shipping_discount_amount": 48000,
+                "shipping_discount_tiki_first": 0,
+                "is_24h": false,
+                "plan_name": "standard",
+                "estimation_description": "dự kiến giao hàng vào Thứ hai, 09/10/2017 - Thứ ba, 10/10/2017"
+            },
+            "shipping_address": {
+                "id": 15853136,
+                "name": "Nguyen Manh Quynh",
+                "street": "123 Nguyen Thi Minh Khai",
+                "ward": "Phường Dakao",
+                "city": "Quận 1",
+                "region": "Hồ Chí Minh",
+                "country": "VN",
+                "phone": "0903000000"
+            }
+        },
+        {
+            "id": 8226470,
+            "code": "86774161",
+            "status": "cho_in",
+            "coupon_code": null,
+            "gift_card_code": null,
+            "gift_card_amount": 0,
+            "subtotal": 4320000,
+            "grand_total": 3499200,
+            "purchased_at": "2017-10-04 16:07:15",
+            "discount": {
+                "discount_amount": 820800,
+                "discount_coupon": 0
+            },
+            "shipping": {
+                "allow_check": true,
+                "estimation_time_min": 1,
+                "estimation_time_max": 2,
+                "delivery_address_type": 1,
+                "shipping_amount": 0,
+                "shipping_discount_amount": 14000,
+                "shipping_discount_tiki_first": 0,
+                "is_24h": false,
+                "plan_name": "standard",
+                "estimation_description": "dự kiến giao hàng vào Thứ năm, 05/10/2017 - Thứ sáu, 06/10/2017"
+            },
+            "delivery_info": {
+                "shipping_code": "NJVTK446893354"
+            },
+            "shipping_address": {
+                "id": 15853136,
+                "name": "Nguyen Manh Quynh",
+                "street": "123 Nguyen Thi Minh Khai",
+                "ward": "Phường Dakao",
+                "city": "Quận 1",
+                "region": "Hồ Chí Minh",
+                "country": "VN",
+                "phone": "0903000000"
+            }
+        }
+    ],
+    "paging": {
+        "total": 683,
+        "per_page": 2,
+        "current_page": 1,
+        "last_page": 342,
+        "from": 1,
+        "to": 2
+    }
+}

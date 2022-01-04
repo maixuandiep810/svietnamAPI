@@ -1,0 +1,62 @@
+{
+    "id": 8224740,
+    "code": "72650868",
+    "status": "cho_in",
+    "coupon_code": null,
+    "gift_card_code": null,
+    "gift_card_amount": 0,
+    "subtotal": 6616000,
+    "grand_total": 5954400,
+    "purchased_at": "2017-08-28 15:34:11",
+    "fulfillment_type": "seller_delivery",
+    "discount": {
+        "discount_amount": 661600,
+        "discount_coupon": 0
+    },
+    "shipping": {
+        "shipping_amount": 0,
+        "shipping_discount_amount": 14000,
+        "estimation_description": "dự kiến giao hàng vào Thứ tư, 30/08/2017 - Thứ năm,     31/08/2017"
+    },
+    "shipping_address": {
+        "id": 15853136,
+        "name": "Nguyen Manh Quynh",
+        "street": "123 Nguyen Thi Minh Khai",
+        "ward": "Phường Dakao",
+        "city": "Quận 1",
+        "region": "Hồ Chí Minh",
+        "country": "VN",
+        "phone": "0903000000"
+    },
+    "delivery_info": {
+        "shipping_code": "NJVTK446893354"
+    },
+    "items": [
+        {
+            "id": 24858234,
+            "product_id": 582130,
+            "product_name": "Máy Cạo Râu Nam Philips PQ217",
+            "product_sku": "1325477473287",
+            "qty": 4,
+            "price": 799000,
+            "subtotal": 3196000,
+            "discount_amount": 319600,
+            "discount_percent": 0,
+            "confirmation_status": "seller_canceled",
+            "confirmed_at": "2017-08-28 16:31:33"
+        },
+        {
+            "id": 24858235,
+            "product_id": 582128,
+            "product_name": "Máy Cạo Râu Nam Philips AT620",
+            "product_sku": "1322860449942",
+            "qty": 2,
+            "price": 1710000,
+            "subtotal": 3420000,
+            "discount_amount": 342000,
+            "discount_percent": 0,
+            "confirmation_status": "seller_confirmed",
+            "confirmed_at": "2017-08-28 16:31:33"
+        }
+    ]
+}

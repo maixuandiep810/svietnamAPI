@@ -1,0 +1,42 @@
+using System.ComponentModel;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using CsvHelper;
+using CsvHelper.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace svietnamAPI.Infras.Data.DatabaseContext.SeedingData
+{
+    public static class SeedingEntityModelBuilderExtensions
+    {
+        public static void SeedEntity<TEntity>(this ModelBuilder modelBuilder, string resourcePath, Encoding endCoding, Action<EntityTypeBuilder, TEntity[]> hasDataAction)
+            where TEntity : class
+        {
+            var csvReaderConfig = modelBuilder.CsvReaderConfig();
+            using (var reader = new StreamReader(resourcePath))
+            using (var csvReader = new CsvReader(reader, csvReaderConfig))
+            {
+                var entities = csvReader.GetRecords<TEntity>().ToArray();
+                hasDataAction(modelBuilder.Entity<TEntity>(), entities);
+            }
+        }
+
+        public static CsvConfiguration CsvReaderConfig(this ModelBuilder modelBuilder)
+        {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                NewLine = Environment.NewLine,
+                HasHeaderRecord = true,
+                HeaderValidated = null,
+                MissingFieldFound = null,
+                IgnoreBlankLines = false
+            };
+            return config;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+https://stackoverflow.com/questions/19144200/designing-a-sql-schema-for-a-combination-of-many-to-many-relationship-variation
+
+
+CREATE TABLE products (
+    product_id  int AUTO_INCREMENT PRIMARY KEY,
+    name        varchar(20),
+    description varchar(30)
+);
+
+INSERT INTO products
+    (name, description)
+VALUES
+    ('Rug', 'A cool rug' ),
+    ('Cup', 'A coffee cup');
+
+-- ========================================
+
+CREATE TABLE variants (
+    variant_id int AUTO_INCREMENT PRIMARY KEY,
+    variant    varchar(50)
+);
+
+INSERT INTO variants
+    (variant)
+VALUES
+    ('color'),
+    ('material'),
+    ('size');
+
+-- ========================================
+
+CREATE TABLE variant_value (
+    value_id   int AUTO_INCREMENT PRIMARY KEY,
+    variant_id int,
+    value      varchar(50)
+);
+
+INSERT INTO variant_value
+    (variant_id, value)
+VALUES
+    (1, 'red'),
+    (1, 'blue'),
+    (1, 'green'),
+    (2, 'wool'),
+    (2, 'polyester'),
+    (3, 'small'),
+    (3, 'medium'),
+    (3, 'large');
+
+-- ========================================
+
+CREATE TABLE product_variants (
+    product_variants_id int AUTO_INCREMENT PRIMARY KEY,
+    product_id          int,
+    productvariantname  varchar(50),
+    sku                 varchar(50),
+    price               float
+);
+
+INSERT INTO product_variants
+    (product_id, productvariantname, sku, price)
+VALUES
+    (1, 'red-wool', 'a121', 50),
+    (1, 'red-polyester', 'a122', 50);
+
+-- ========================================
+
+CREATE TABLE product_details (
+    product_detail_id   int AUTO_INCREMENT PRIMARY KEY,
+    product_variants_id int,
+    value_id            int
+);
+
+INSERT INTO product_details
+    (product_variants_id, value_id)
+VALUES
+    (1, 1),
+    (1, 4),
+    (2, 1),
+    (2, 5);

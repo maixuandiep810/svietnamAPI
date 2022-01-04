@@ -1,0 +1,114 @@
+        protected abstract Task CheckInsertEntityConstraintAsync(TEntity entity);
+        protected abstract Task CheckUpdateEntityConstraintAsync(TEntity entity);
+        protected abstract Task CheckDeleteEntityConstraintAsync(TEntity entity);
+        protected abstract Task CheckSoftDeleteEntityConstraintAsync(TEntity entity);        
+        
+        
+        
+        
+        
+        
+        
+        
+        protected override async Task CheckInsertEntityConstraintAsync(Category category)
+        {
+            await Task.Delay(0);
+
+        //     var isValidInsertEntity = true;
+        //     var messages = new List<string>();
+
+        //     //
+        //     //  1. Fluent Validation
+        //     //
+
+        //     var fluentValResult = await _validator.ValidateAsync(category);
+        //     if (fluentValResult.IsValid == false)
+        //     {
+        //         isValidInsertEntity = false;
+        //         messages.AddRange(fluentValResult.Errors.Select(p => p.ErrorMessage));
+        //     }
+
+        //     //
+        //     //  2. Other Db Constraint Validation: PK, FK, ...
+        //     //
+
+        //     var isExistedName = _dbContext.Set<Category>().Where(p => p.Name == category.Name).Count() > 0;
+        //     if (isExistedName)
+        //     {
+        //         isValidInsertEntity = false;
+        //         messages.Add(CategoryValidationMessageConst.IsExistedName);
+        //     }
+        //     var isExistedSlug = _dbContext.Set<Category>().Where(p => p.Slug == category.Slug).Count() > 0;
+        //     if (isExistedSlug)
+        //     {
+        //         isValidInsertEntity = false;
+        //         messages.Add(CategoryValidationMessageConst.IsExistedSlug);
+        //     }
+        //     var isXOR_IsRoot_ParentIdNotNull_EqualFalse = (category.IsRoot == true) ^ (category.ParentId != null);
+        //     if (isXOR_IsRoot_ParentIdNotNull_EqualFalse == false)
+        //     {
+        //         isValidInsertEntity = false;
+        //         messages.Add(CategoryValidationMessageConst.IsXOR_IsRoot_ParentIdNotNull_EqualFalse);
+        //     }
+        //     if (category.ParentId != null)
+        //     {
+        //         var isNotExistedParentId = _dbContext.Set<Category>().Where(p => p.Id == category.ParentId).Count() <= 0;
+        //         if (isNotExistedParentId)
+        //         {
+        //             isValidInsertEntity = false;
+        //             messages.Add(CategoryValidationMessageConst.IsNotExistedParentId);
+        //         }
+        //     }
+
+        //     //
+        //     // 3. Throw "Entity Validation Failed AppException" If validation is failed
+        //     //
+
+        //     if (isValidInsertEntity == false)
+        //     {
+        //         throw new EntityValidationFailedAppException(messages);
+        //     }
+        }
+
+        protected override async Task CheckUpdateEntityConstraintAsync(Category category)
+        {
+            await Task.Delay(0);
+
+        }
+
+        protected override async Task CheckDeleteEntityConstraintAsync(Category category)
+        {
+            await Task.Delay(0);
+
+        }
+
+        protected override async Task CheckSoftDeleteEntityConstraintAsync(Category category)
+        {
+            await Task.Delay(0);
+
+        }
+
+
+
+
+
+
+        public async Task InsertAsync(TEntity entity)
+        {
+            try
+            {
+                await CheckInsertEntityConstraintAsync(entity);
+                await _dbContext.Set<TEntity>().AddAsync(entity);
+            }
+            catch (EntityValidationFailedAppException entityValidationFailedAppEx)
+            {
+                throw entityValidationFailedAppEx;
+            }
+            catch (System.Exception systemEx)
+            {
+                _logger.LogDebug(systemEx, "");
+                _logger.LogInformation(systemEx, "");
+                throw new RepositoryAppException(systemEx);
+            }
+        }
+  

@@ -1,0 +1,18 @@
+            if (System.Diagnostics.Debugger.IsAttached == false)
+                System.Diagnostics.Debugger.Launch();
+            System.Console.WriteLine(System.Diagnostics.Debugger.IsAttached);
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            {
+
+                using (StreamReader reader = new StreamReader(stream, endCoding))
+                {
+                    var config = modelBuilder.CsvReaderConfig();
+                    CsvReader csvReader = new CsvReader(reader, config);
+                    var entities = csvReader.GetRecords<TEntity>().ToArray();
+                    modelBuilder.Entity<TEntity>().HasData(entities);
+                }
+            }
+
+
+            var documentResourceName = "svietnamAPI.Infras.Data.DatabaseContext.SeedingData.CsvDocuments.Core.Documents.csv";

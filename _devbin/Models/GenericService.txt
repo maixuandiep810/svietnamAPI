@@ -1,0 +1,40 @@
+        public async Task InsertAsync<TInsertDto>(TInsertDto insertDto)
+        where TInsertDto : class
+        {
+            await CheckInsertEntityConstraintAsync<TInsertDto>(insertDto);
+            var insertEntity = _mapper.Map<TInsertDto, TEntity>(insertDto);
+            await _tDbRepo.InsertAsync(insertEntity);
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task UpdateAsync<TUpdateDto>(TId entityId, TUpdateDto updateDto)
+        where TUpdateDto : class
+        {
+            await CheckUpdateEntityConstraintAsync<TUpdateDto>(updateDto);
+            await _tDbRepo.UpdateAsync(entityId, updateDto);
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task DeleteAsync(TId entityId)
+        {
+            await _tDbRepo.DeleteAsync(entityId);
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task SoftDeleteAsync<TSoftDeletable>(TId entityId)
+        where TSoftDeletable : TEntity, ISoftDeletable
+        {
+            await _tDbRepo.SoftDeleteAsync<TSoftDeletable>(entityId);
+            await _unitOfWork.CommitAsync();
+        }
+
+
+
+
+        Task InsertAsync<TInsertDto>(TInsertDto insertDto)
+        where TInsertDto : class;
+        Task UpdateAsync<TUpdateDto>(TId entityId, TUpdateDto updateDto)
+        where TUpdateDto : class;
+        Task DeleteAsync(TId entityId);
+        Task SoftDeleteAsync<TSoftDeletable>(TId entityId)
+        where TSoftDeletable : TEntity, ISoftDeletable;

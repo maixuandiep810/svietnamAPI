@@ -1,0 +1,37 @@
+        private ICategoryDbRepository _categoryDbRepo;
+        private IPhysicalFileRepository _physicalFileRepo;
+        private IAppFileDbRepository _appFileDbRepo;
+
+        public ICategoryDbRepository CategoryDbRepo
+        {
+            get
+            {
+                if (this._categoryDbRepo == null)
+                {
+                    this._categoryDbRepo = new CategoryDbRepository(_dataConnectionFactory);
+                }
+                return this._categoryDbRepo;
+            }
+        }
+        public IPhysicalFileRepository PhysicalFileRepo
+        {
+            get
+            {
+                if (this._physicalFileRepo == null)
+                {
+                    this._physicalFileRepo = new PhysicalFileRepository(_dataConnectionFactory);
+                }
+                return this._physicalFileRepo;
+            }
+        }
+        public IAppFileDbRepository AppFileDbRepo
+        {
+            get
+            {
+                if (this._appFileDbRepo == null)
+                {
+                    this._appFileDbRepo = new AppFileDbRepository(_dataConnectionFactory);
+                }
+                return this._appFileDbRepo;
+            }
+        }

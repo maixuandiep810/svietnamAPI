@@ -1,0 +1,16 @@
+using System;
+using System.Reflection;
+
+namespace svietnamAPI.Common.Exceptions
+{
+    public class JwtTokenAppException : Exception
+    {
+        public JwtTokenAppException(Exception ex) : base()
+        {
+            var stackTraceField = typeof(JwtTokenAppException)
+                .BaseType
+                .GetField("_stackTraceString", BindingFlags.Instance | BindingFlags.NonPublic);
+            stackTraceField.SetValue(this, ex.StackTrace);
+        }
+    }
+}

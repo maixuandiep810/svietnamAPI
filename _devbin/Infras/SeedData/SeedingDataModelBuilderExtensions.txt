@@ -1,0 +1,34 @@
+using Microsoft.EntityFrameworkCore;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
+using System.Text;
+
+namespace svietnamAPI.Infras.Data.DatabaseContext.SeedingData
+{
+    public static class SeedingDataModelBuilderExtensions
+    {
+        public static void Seed(this ModelBuilder modelBuilder)
+        {
+            //
+            //  Core
+            //
+
+            modelBuilder.SeedEntity<DocumentType>(SeedingDocumentsPath.DocumentTypes,
+                Encoding.UTF8,
+                (entityTypeBuilder, entities) => entityTypeBuilder.HasData(entities));
+
+            modelBuilder.SeedEntity<Document>(SeedingDocumentsPath.Documents,
+                Encoding.UTF8,
+                (entityTypeBuilder, entities) => entityTypeBuilder.HasData(entities));
+
+
+            //
+            //  Catalog
+            //
+
+            modelBuilder.SeedEntity<Category>(SeedingDocumentsPath.Categories,
+                Encoding.UTF8,
+                (entityTypeBuilder, entities) => entityTypeBuilder.HasData(entities));
+        }
+    }
+}
