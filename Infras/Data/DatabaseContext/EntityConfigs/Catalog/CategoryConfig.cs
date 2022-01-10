@@ -6,13 +6,21 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Catalog
 {
     public class CategoryConfig : IEntityTypeConfiguration<Category>,
         IBaseEntityConfig<Category, int>,
+        ICodeIdentiﬁableConfig<Category>,
+        INameIdentiﬁableConfig<Category>,
         ISoftDeletableEntityConfig<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Categories");
-            this.BaseEntityConfigure(builder);
-            this.SoftDeletableEntityConfigure(builder);
+            this.BaseEntityConfigure(builder: builder);
+            this.CodeIdentiﬁableConfigure(builder: builder, 
+                maxCodeLength: 3000);
+            this.NameIdentiﬁableConfigure(builder: builder,
+                maxNameLength: 3000,
+                maxDisplayNameLength: 3000,
+                maxSlugLength: 3000);
+            this.SoftDeletableEntityConfigure(builder: builder);
             builder.HasOne(p => p.BaseImage)
                     .WithMany()
                     .OnDelete(DeleteBehavior.NoAction)
@@ -21,19 +29,13 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Catalog
                     .WithMany()
                     .OnDelete(DeleteBehavior.NoAction)
                     .HasForeignKey(p => p.ThumbnailImageId);
-            builder.Property(t => t.Name)
-                    .HasColumnType("Nvarchar")
-                    .HasMaxLength(3000);
-            builder.Property(t => t.Slug)
-                    .HasColumnType("Nvarchar")
-                    .HasMaxLength(3000);
             builder.Property(t => t.IsRoot)
                     .HasColumnType("Bit");
             builder.Property(t => t.ParentId)
                     .HasColumnType("Int");
             builder.Property(t => t.ChildrenCount)
                     .HasColumnType("Int");
-            builder.Property(t => t.ProductCount)
+            builder.Property(t => t.ProductsCount)
                     .HasColumnType("Int");
             builder.Property(t => t.Description)
                     .HasColumnType("Nvarchar")
@@ -43,17 +45,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Catalog
                     .HasMaxLength(3000);
             builder.Property(t => t.ThumbnailImageId)
                     .HasColumnType("Int");
-            builder.Property(t => t.IsEnabled)
-                    .HasColumnType("Bit");
-            builder.Property(t => t.IsDeleted)
-                    .HasColumnType("Bit");
-            builder.Property(t => t.CreatedAt)
-                    .HasColumnType("Datetime");
-            builder.Property(t => t.CreatedBy)
-                    .HasColumnType("Int");
-            builder.Property(t => t.CreatedAt)
-                    .HasColumnType("Datetime");
-            builder.Property(t => t.CreatedBy)
+            builder.Property(t => t.EntityStatusId)
                     .HasColumnType("Int");
         }
     }

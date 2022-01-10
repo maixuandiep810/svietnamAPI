@@ -7,9 +7,10 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
 {
     public static class IBaseEntityConfigExtensions
     {
-        public static void BaseEntityConfigure<TEntity, TId>(this IBaseEntityConfig<TEntity, TId> entityConfig, EntityTypeBuilder<TEntity> builder)
-        where TId : struct
-        where TEntity : class, IBaseEntity<TId>
+        public static void BaseEntityConfigure<TEntity, TId>(this IBaseEntityConfig<TEntity, TId> entityConfig, 
+            EntityTypeBuilder<TEntity> builder)
+            where TId : struct
+            where TEntity : class, IBaseEntity<TId>
         {
             builder.HasKey(o => o.Id);
         }

@@ -1,7 +1,7 @@
-Id,Name,Extension,MimeType
-101,Image,.png,image/png
-102,Image,.jpg,image/jpeg
-103,Image,.jpeg,image/jpeg
-104,Csv,.csv,text/csv
-105,Video,.mp4,video/mp4
-106,Video,.mpeg,video/mpeg
+Id,Code,Name,DisplayName,Slug,Extension,MimeType
+10001,11-104-10001,Image,Image,image,.png,image/png
+10002,11-104-10002,Image,Image,image,.jpg,image/jpeg
+10003,11-104-10003,Image,Image,image,.jpeg,image/jpeg
+10004,11-104-10004,Csv,Csv,csv,.csv,text/csv
+10005,11-104-10005,Video,Video,video,.mp4,video/mp4
+10006,11-104-10006,Video,Video,video,.mpeg,video/mpeg

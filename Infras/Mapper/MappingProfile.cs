@@ -8,8 +8,8 @@ namespace svietnamAPI.Infras.Mapper
     {
         public MappingProfile()
         {
-            CoreMappingProfile.CreateMap(this);
-            CategoryMappingProfile.CreateMap(this);
+            // CoreMappingProfile.CreateMap(this);
+            // CategoryMappingProfile.CreateMap(this);
         }
     }
 }

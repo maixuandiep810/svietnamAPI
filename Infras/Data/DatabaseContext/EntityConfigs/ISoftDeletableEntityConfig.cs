@@ -6,7 +6,7 @@ using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
 {
     public interface ISoftDeletableEntityConfig<TEntity>
-    where TEntity: class, ISoftDeletable
+        where TEntity: class, ISoftDeletable
     {
     }
 }

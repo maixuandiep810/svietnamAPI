@@ -1,0 +1,2 @@
+Id,Code,Name,DisplayName,Slug,SKU,Description,Short Description,LeafCategoryId,ItemsCount,ManufacturerId,SupplierId,EntityStatusId,IsDeleted,CreateAt,CreateBy,UpdateAt,UpdateBy
+10001,13-104-10001,test,test,test,prd-test,prd-test,prd-test,10001,999,10001,10001,10001,0,2020-11-12,,,

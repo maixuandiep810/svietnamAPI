@@ -5,7 +5,7 @@ namespace svietnamAPI.Common.Dtos.Catalog
     public class DefaultFieldCategoryDto
     {
         public int ChildrenCount { get; set; }
-        public int ProductCount { get; set; }
+        public int ProductsCount { get; set; }
         public bool IsEnabled { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? CreatedAt { get; set; }
@@ -16,7 +16,7 @@ namespace svietnamAPI.Common.Dtos.Catalog
         public DefaultFieldCategoryDto()
         {
             ChildrenCount = 0;
-            ProductCount = 0;
+            ProductsCount = 0;
             IsEnabled = false;
             IsDeleted = false;
             CreatedAt = DateTime.Now;

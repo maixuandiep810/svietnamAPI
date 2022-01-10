@@ -1,0 +1,2 @@
+"Id","Code","Name","DisplayName","Slug","SKU","Description","ProductId","Price","Qty","OutOfStockThreshold","NotifyForQuantityBelow","MinQtyAllowedInShoppingCart","MaxQtyAllowedInShoppingCart","DisplayOrder","EntityStatusId","IsDeleted","CreateAt","CreateBy","UpdateAt","UpdateBy"
+10001,"13-105-10001","test","test","test","test","test",10001,999,999,1,1,1,999,1,10001,0,2020-11-12,,,

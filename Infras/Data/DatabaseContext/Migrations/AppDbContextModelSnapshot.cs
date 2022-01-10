@@ -32,35 +32,52 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("ChildrenCount")
                         .HasColumnType("Int");
 
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("Datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("Int");
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(3000)
                         .HasColumnType("Nvarchar(3000)");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("EntityStatusId")
+                        .HasColumnType("Int");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Bit")
                         .HasDefaultValue(false);
 
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("Bit");
+                    b.Property<bool>("IsLeaf")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsRoot")
                         .HasColumnType("Bit");
 
                     b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(3000)
-                        .HasColumnType("Nvarchar(3000)");
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("Int");
 
-                    b.Property<int>("ProductCount")
+                    b.Property<int>("ProductsCount")
                         .HasColumnType("Int");
 
                     b.Property<string>("ShortDescription")
@@ -68,8 +85,10 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(3000)");
 
                     b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(3000)
-                        .HasColumnType("Nvarchar(3000)");
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
 
                     b.Property<int>("ThumbnailImageId")
                         .HasColumnType("Int");
@@ -84,9 +103,490 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasIndex("BaseImageId");
 
+                    b.HasIndex("EntityStatusId");
+
                     b.HasIndex("ThumbnailImageId");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Manufacturer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("Int");
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Manufacturers");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("EntityStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("ItemsCount")
+                        .HasColumnType("Int");
+
+                    b.Property<int>("LeafCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ManufacturerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("SKU")
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)");
+
+                    b.Property<string>("ShortDescription")
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityStatusId");
+
+                    b.HasIndex("LeafCategoryId");
+
+                    b.HasIndex("ManufacturerId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.ProductItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EntityStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("MaxQtyAllowedInShoppingCart")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinQtyAllowedInShoppingCart")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("NotifyForQuantityBelow")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OutOfStockThreshold")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SKU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityStatusId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductItems");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.ProductItemDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("EavAttributeValueId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductItemId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EavAttributeValueId");
+
+                    b.HasIndex("ProductItemId");
+
+                    b.ToTable("ProductItemDetails");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Supplier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("Int");
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Suppliers");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AddressLine1")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("AddressLine2")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("CommuneId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Int")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("ContactName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("PhoneNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("ZipCode")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommuneId");
+
+                    b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Commune", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DistrictId");
+
+                    b.ToTable("Communes");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.DataType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("BackendName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DataTypes");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.District", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("ProvinceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Document", b =>
@@ -96,9 +596,21 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
                     b.Property<string>("Desciption")
                         .HasMaxLength(3000)
                         .HasColumnType("Nvarchar(3000)");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
 
                     b.Property<int>("DocumentTypeId")
                         .HasColumnType("Int");
@@ -113,8 +625,16 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(3000)");
 
                     b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(3000)
-                        .HasColumnType("Nvarchar(3000)");
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
 
                     b.Property<string>("Title")
                         .HasMaxLength(3000)
@@ -138,6 +658,18 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
                     b.Property<string>("Extension")
                         .HasMaxLength(3000)
                         .HasColumnType("Nvarchar(3000)");
@@ -147,12 +679,301 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(3000)");
 
                     b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(3000)
-                        .HasColumnType("Nvarchar(3000)");
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
 
                     b.HasKey("Id");
 
                     b.ToTable("DocumentTypes");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntityStatuses");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<bool>("IsEavEntity")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntityTypes");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Province", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Provinces");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttribute", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("DataTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<int>("EavAttributeGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EntityTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DataTypeId");
+
+                    b.HasIndex("EavAttributeGroupId");
+
+                    b.HasIndex("EntityTypeId");
+
+                    b.ToTable("EavAttributes");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeEavAttributeSetMapping", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("EavAttributeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EavAttributeSetId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EavAttributeId");
+
+                    b.HasIndex("EavAttributeSetId");
+
+                    b.ToTable("EavAttributeEavAttributeSetMappings");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EavAttributeGroups");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeSet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("DisplayName")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Nvarchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.Property<string>("Slug")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(3000)
+                        .HasColumnType("Varchar(3000)")
+                        .HasDefaultValue("False");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EavAttributeSets");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeValue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("EavAttributeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ValueToString")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EavAttributeId");
+
+                    b.ToTable("EavAttributeValues");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Category", b =>
@@ -163,6 +984,12 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", "EntityStatus")
+                        .WithMany()
+                        .HasForeignKey("EntityStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Document", "ThumbnailImage")
                         .WithMany()
                         .HasForeignKey("ThumbnailImageId")
@@ -171,7 +998,137 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.Navigation("BaseImage");
 
+                    b.Navigation("EntityStatus");
+
                     b.Navigation("ThumbnailImage");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Manufacturer", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Product", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", "EntityStatus")
+                        .WithMany()
+                        .HasForeignKey("EntityStatusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Category", "LeafCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("LeafCategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Manufacturer", "Manufacturer")
+                        .WithMany()
+                        .HasForeignKey("ManufacturerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("EntityStatus");
+
+                    b.Navigation("LeafCategory");
+
+                    b.Navigation("Manufacturer");
+
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.ProductItem", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", "EntityStatus")
+                        .WithMany()
+                        .HasForeignKey("EntityStatusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Product", "Product")
+                        .WithMany("ProductItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("EntityStatus");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.ProductItemDetail", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeValue", "EavAttributeValue")
+                        .WithMany()
+                        .HasForeignKey("EavAttributeValueId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.ProductItem", "ProductItem")
+                        .WithMany("ProductItemDetails")
+                        .HasForeignKey("ProductItemId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("EavAttributeValue");
+
+                    b.Navigation("ProductItem");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Supplier", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Address", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Commune", "Commune")
+                        .WithMany()
+                        .HasForeignKey("CommuneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Commune");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Commune", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.District", "District")
+                        .WithMany("Communes")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("District");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.District", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Province", "Province")
+                        .WithMany("Districts")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Province");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Document", b =>
@@ -185,9 +1142,106 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Navigation("DocumentType");
                 });
 
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttribute", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.DataType", "DataType")
+                        .WithMany()
+                        .HasForeignKey("DataTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeGroup", "EavAttributeGroup")
+                        .WithMany("EavAttributes")
+                        .HasForeignKey("EavAttributeGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityType", "EntityType")
+                        .WithMany()
+                        .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DataType");
+
+                    b.Navigation("EavAttributeGroup");
+
+                    b.Navigation("EntityType");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeEavAttributeSetMapping", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttribute", "EavAttribute")
+                        .WithMany("EavAttributeEavAttributeSetMappings")
+                        .HasForeignKey("EavAttributeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeSet", "EavAttributeSet")
+                        .WithMany("EavAttributeEavAttributeSetMappings")
+                        .HasForeignKey("EavAttributeSetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EavAttribute");
+
+                    b.Navigation("EavAttributeSet");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeValue", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttribute", "EavAttribute")
+                        .WithMany()
+                        .HasForeignKey("EavAttributeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EavAttribute");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Product", b =>
+                {
+                    b.Navigation("ProductItems");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.ProductItem", b =>
+                {
+                    b.Navigation("ProductItemDetails");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.District", b =>
+                {
+                    b.Navigation("Communes");
+                });
+
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.DocumentType", b =>
                 {
                     b.Navigation("Documents");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Province", b =>
+                {
+                    b.Navigation("Districts");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttribute", b =>
+                {
+                    b.Navigation("EavAttributeEavAttributeSetMappings");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeGroup", b =>
+                {
+                    b.Navigation("EavAttributes");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeSet", b =>
+                {
+                    b.Navigation("EavAttributeEavAttributeSetMappings");
                 });
 #pragma warning restore 612, 618
         }

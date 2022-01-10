@@ -1,3 +1,2 @@
-Id,Name,Title,Location,Url,Description,DocumentTypeId,IsDeleted
-10001,Default Category Base Image,Default Category Base Image,/home/p/Desktop/svietnam/svietnamSTATICFILES/category/image/default-500-500.jpg,https://localhost:5001/staticfiles/category/image/default-500-500.jpg,Default Category Base Image,102,0
-10002,Default Category Thumbnail Image,Default Category Thumbnail Image,/home/p/Desktop/svietnam/svietnamSTATICFILES/category/image/default-25-25.png,https://localhost:5001/staticfiles/category/image/default-25-25.png,Default Category Thumbnail Image,101,0
+Id,Code,Name,DisplayName,Slug,Title,Location,Url,Description,DocumentTypeId,IsDeleted
+10001,11-105-10001,test,test,test,test,/home/p/Desktop/svietnam/svietnamSTATICFILES/category/image/test.jpg,https://localhost:5001/staticfiles/category/image/test.jpg,test,10002,0
