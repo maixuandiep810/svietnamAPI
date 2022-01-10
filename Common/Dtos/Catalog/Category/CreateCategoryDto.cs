@@ -1,4 +1,4 @@
-namespace svietnamAPI.Common.Dtos.Catalog
+namespace svietnamAPI.Common.Dtos.Catalog.Category
 {
     public class CreateCategoryDto
     {

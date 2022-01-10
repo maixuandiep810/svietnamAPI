@@ -6,5 +6,6 @@ namespace svietnamAPI.Models.IServices
     public interface IServiceWrapper
     {
         ICategoryService CategoryService { get; }
+        IProductService ProductService { get; }
     }
 }

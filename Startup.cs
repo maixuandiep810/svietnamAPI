@@ -28,14 +28,13 @@ namespace svietnamAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
+            services.AddControllers(Configuration);
 
             services.AddServerSetting(Configuration);
             services.AddInfras(Configuration);
-            services.AddModels();
+            services.AddModels(Configuration);
 
-            services.AddSwagger();
+            services.AddSwagger(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +44,7 @@ namespace svietnamAPI
 
             app.DevEnvUseDeveloperExceptionPage(env);
             app.DevEnvUseSwagger(env);
-            
+
             // 
             // app.UseUnhandledException();
             //

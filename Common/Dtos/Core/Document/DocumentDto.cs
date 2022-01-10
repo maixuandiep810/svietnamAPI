@@ -1,4 +1,4 @@
-namespace svietnamAPI.Common.Dtos.Core
+namespace svietnamAPI.Common.Dtos.Core.Document
 {
     public class DocumentDto
     {

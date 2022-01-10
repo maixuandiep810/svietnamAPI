@@ -32,13 +32,13 @@ namespace svietnamAPI.Models.Repositories
 
         public async Task<List<TEntity>> GetAllAsync()
         {
-            var entites = await FindAsync<TEntity>(p => p, p => true);
+            var entites = await FindAsync<TEntity>(p => p, p => true, isAsNoTracking: true);
             return entites;
         }
 
         public async Task<TEntity> GetByIdAsync(TId entityId)
         {
-            var entity = (await FindAsync<TEntity>(p => p, p => p.Id.Equals(entityId)))?.FirstOrDefault();
+            var entity = (await FindAsync<TEntity>(p => p, p => p.Id.Equals(entityId), isAsNoTracking: true))?.FirstOrDefault();
             return entity;
         }
 
@@ -127,15 +127,24 @@ namespace svietnamAPI.Models.Repositories
             }
         }
 
-        public async Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>> predicate)
+        public async Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
+            Expression<Func<TEntity, bool>> predicate,
+            bool isAsNoTracking)
         {
             try
             {
-                var entities = await _dbContext.Set<TEntity>().Where(predicate).Select(selector).ToListAsync();
-                return entities;
+                if (isAsNoTracking == true)
+                {
+                    var entitiesNoTracking = await _dbContext.Set<TEntity>().Where(predicate).Select(selector).ToListAsync();
+                    return entitiesNoTracking;
+                }
+                var entitiesTracking = await _dbContext.Set<TEntity>().Where(predicate).Select(selector).ToListAsync();
+                return entitiesTracking;
             }
             catch (System.Exception systemEx)
             {
+                _logger.LogDebug(systemEx, "");
+                _logger.LogInformation(systemEx, "");
                 throw new RepositoryAppException(systemEx);
             }
         }
@@ -151,6 +160,8 @@ namespace svietnamAPI.Models.Repositories
             }
             catch (System.Exception systemEx)
             {
+                _logger.LogDebug(systemEx, "");
+                _logger.LogInformation(systemEx, "");
                 throw new RepositoryAppException(systemEx);
             }
         }

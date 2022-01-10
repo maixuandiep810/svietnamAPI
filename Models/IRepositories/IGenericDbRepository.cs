@@ -17,7 +17,7 @@ namespace svietnamAPI.Models.IRepositories
         Task UpdateAsync<TUpdateDto>(TId entityId, TUpdateDto updateDto);
         Task UpdateAsync<TUpdateDto>(TId entityId, Action<TEntity> updateAction);
         Task DeleteAsync(TId entityId);
-        Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>> predicate);
+        Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>> predicate, bool isAsNoTracking);
         Task SoftDeleteAsync<TSoftDeletable>(TId entityId)
         where TSoftDeletable : TEntity, ISoftDeletable;
     }

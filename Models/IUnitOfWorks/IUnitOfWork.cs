@@ -7,6 +7,7 @@ namespace svietnamAPI.Models.IUnitOfWorks
     public interface IUnitOfWork
     {
         ICategoryDbRepository CategoryDbRepo { get; }
+        IProductDbRepository ProductDbRepo { get; }
         Task CommitAsync();
     }
 }

@@ -18,8 +18,19 @@ namespace svietnamAPI.Models.UnitOfWorks
         private readonly IServiceProvider _serviceProvider;
         private readonly IMapper _mapper;
 
+        //
+        //
+        //  Catalog
+        //
+        //
         private ICategoryDbRepository _categoryDbRepo { get; set; }
+        private IProductDbRepository _productDbRepo { get; set; }
 
+        //
+        //
+        //  Catalog
+        //
+        //
         public ICategoryDbRepository CategoryDbRepo
         {
             get
@@ -34,6 +45,25 @@ namespace svietnamAPI.Models.UnitOfWorks
             }
         }
 
+        public IProductDbRepository ProductDbRepo
+        {
+            get
+            {
+                if (_productDbRepo == null)
+                {
+                    var loggerProductRepo = (ILogger<ProductDbRepository>)_serviceProvider.GetService(typeof(ILogger<ProductDbRepository>));
+                    // var validatorCategory = (IValidator<Category>)_serviceProvider.GetService(typeof(IValidator<Category>));
+                    _productDbRepo = new ProductDbRepository(_appDbContext, null, _mapper, loggerProductRepo);
+                }
+                return _productDbRepo;
+            }
+        }
+
+        //
+        //
+        //
+        //
+        //
         public UnitOfWork(AppDbContext appDbContext, IServiceProvider serviceProvider, IMapper mapper)
         {
             _appDbContext = appDbContext;

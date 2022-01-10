@@ -30,11 +30,17 @@ namespace svietnamAPI.Models.Repositories.Catalog
         {
             try
             {
-                var entities = await _dbContext.Set<Category>().Select(p => p)
+                if (isIncludeImage == false)
+                {
+                    var simpleCategories = await GetAllAsync();
+                    return simpleCategories;
+                }
+                var categories_Image = await _dbContext.Set<Category>().Select(p => p)
+                                                .AsNoTracking()
                                                 .Include(p => p.BaseImage)
                                                 .Include(p => p.ThumbnailImage)
                                                 .ToListAsync();
-                return entities;
+                return categories_Image;
             }
             catch (System.Exception systemEx)
             {

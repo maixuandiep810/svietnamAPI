@@ -22,7 +22,7 @@ namespace svietnamAPI.Models.Repositories
         {
             try
             {
-                var entity = (TSoftDeletable)(await FindAsync<TEntity>(p => p, p => p.Id.Equals(entityId)))?.FirstOrDefault();
+                var entity = (TSoftDeletable)(await FindAsync<TEntity>(p => p, p => p.Id.Equals(entityId), isAsNoTracking: false))?.FirstOrDefault();
                 if (entity == null)
                 {
                     throw new NotFoundEntityAppException($"Entity Not Found: Id = {entityId}");

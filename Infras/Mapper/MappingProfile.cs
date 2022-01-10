@@ -1,6 +1,5 @@
 using AutoMapper;
-using svietnamAPI.Infras.Mapper.Catalog;
-using svietnamAPI.Infras.Mapper.Core;
+using svietnamAPI.Infras.Mapper.EntityMappingProfile;
 
 namespace svietnamAPI.Infras.Mapper
 {
@@ -8,8 +7,9 @@ namespace svietnamAPI.Infras.Mapper
     {
         public MappingProfile()
         {
-            // CoreMappingProfile.CreateMap(this);
-            // CategoryMappingProfile.CreateMap(this);
+            CoreMappingProfile.CreateMap(this);
+            EavMappingProfile.CreateMap(this);
+            CatalogMappingProfile.CreateMap(this);
         }
     }
 }

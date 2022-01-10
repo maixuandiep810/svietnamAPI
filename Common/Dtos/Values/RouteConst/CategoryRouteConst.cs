@@ -1,7 +1,8 @@
 namespace svietnamAPI.Common.Dtos.Values
 {
-    public static class RouteConst
+    public static partial class RouteConst
     {
+        //
         public const string Categories_GetAll = "categories/get-all";
         public const string Categories_Detail = "categories/detail/{categoryId}";
         public const string Categories_Find = "categories/find?displaynam}";

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using svietnamAPI.Common.Dtos.Catalog;
+using svietnamAPI.Common.Dtos.Catalog.Category;
 using svietnamAPI.Common.Dtos.Values;
 using svietnamAPI.Common.Dtos.Responses;
 using svietnamAPI.Models.IServices;

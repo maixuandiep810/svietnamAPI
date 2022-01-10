@@ -6,8 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using svietnamAPI.Infras.Mapper;
 using svietnamAPI.Infras.Data.DatabaseContext;
 using FluentValidation;
-using svietnamAPI.Infras.Validation.Entities.Catalog;
-using svietnamAPI.Infras.Validation.Dtos.Catalog;
+// using svietnamAPI.Infras.Validation.Entities.Catalog;
+// using svietnamAPI.Infras.Validation.Dtos.Catalog;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 using svietnamAPI.Common.Dtos.Catalog;
 

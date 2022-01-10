@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -6,7 +7,7 @@ namespace svietnamAPI.StartupConfig.ServiceCollectionConfig
 {
     public static class SwaggerConfig
     {
-        public static void AddSwagger(this IServiceCollection services)
+        public static void AddSwagger(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(c =>
             {
