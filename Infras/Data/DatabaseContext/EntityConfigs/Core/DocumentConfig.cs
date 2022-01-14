@@ -1,43 +1,48 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
+using svietnamAPI.Infras.Common.Values.DatabaseContext;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
 {
-    public class DocumentConfig : IEntityTypeConfiguration<Document>, 
-        IBaseEntityConfig<Document, int>,
-        ICodeIdentiﬁableConfig<Document>,
+    public class DocumentConfig : IEntityTypeConfiguration<Document>,
+        IBaseEntityIntPKConfig<Document>,
+        IGlobalCodeIdentiﬁableConfig<Document>,
         INameIdentiﬁableConfig<Document>,
-        ISoftDeletableEntityConfig<Document>
+        IStatusableConfig<Document>,
+        ISoftDeletableConfig<Document>,
+        IAuditableConfig<Document>
     {
         public void Configure(EntityTypeBuilder<Document> builder)
         {
-            builder.ToTable("Documents");
-            this.BaseEntityConfigure(builder);
-            this.CodeIdentiﬁableConfigure(builder: builder,
-                maxCodeLength: 3000);
+            builder.ToTable(TableNameConst.Documents);
+
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
             this.NameIdentiﬁableConfigure(builder: builder,
-                maxNameLength: 3000,
-                maxDisplayNameLength: 3000,
-                maxSlugLength: 3000);
-            this.SoftDeletableEntityConfigure(builder);
+                maxLengthOfName: 1000,
+                maxLengthOfDisplayName: 1000,
+                maxLengthOfSlug: 1000);
+            this.StatusableConfigure(builder: builder);
+            this.SoftDeletableConfigure(builder: builder);
+            this.AuditableConfigure(builder: builder);
+
             builder.HasOne(p => p.DocumentType)
                     .WithMany(p => p.Documents)
                     .HasForeignKey(p => p.DocumentTypeId);
+
             builder.Property(t => t.Title)
-                    .HasColumnType("Nvarchar")
-                    .HasMaxLength(3000);
+                    .HasColumnType(ColumnTypeConst.Nvarchar)
+                    .HasMaxLength(1000);
             builder.Property(t => t.Location)
-                    .HasColumnType("Nvarchar")
-                    .HasMaxLength(3000);
+                    .HasColumnType(ColumnTypeConst.Nvarchar)
+                    .HasMaxLength(1000);
             builder.Property(t => t.Url)
-                    .HasColumnType("Nvarchar")
-                    .HasMaxLength(3000);
+                    .HasColumnType(ColumnTypeConst.Nvarchar)
+                    .HasMaxLength(1000);
             builder.Property(t => t.Desciption)
-                    .HasColumnType("Nvarchar")
+                    .HasColumnType(ColumnTypeConst.Nvarchar)
                     .HasMaxLength(3000);
-            builder.Property(t => t.DocumentTypeId)
-                    .HasColumnType("Int");
         }
     }
 }

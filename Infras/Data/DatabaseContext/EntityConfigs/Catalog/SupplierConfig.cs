@@ -1,30 +1,36 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
+using svietnamAPI.Infras.Common.Values.DatabaseContext;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Catalog
 {
     public class SupplierConfig : IEntityTypeConfiguration<Supplier>,
-        IBaseEntityConfig<Supplier, int>,
-        ICodeIdentiﬁableConfig<Supplier>,
-        INameIdentiﬁableConfig<Supplier>
+        IBaseEntityIntPKConfig<Supplier>,
+        IGlobalCodeIdentiﬁableConfig<Supplier>,
+        INameIdentiﬁableConfig<Supplier>,
+        IStatusableConfig<Supplier>
     {
         public void Configure(EntityTypeBuilder<Supplier> builder)
         {
-            builder.ToTable("Suppliers");
-            this.BaseEntityConfigure(builder: builder);
-            this.CodeIdentiﬁableConfigure(builder: builder,
-                maxCodeLength: 3000);
+            builder.ToTable(TableNameConst.Suppliers);
+
+            this.BaseEntityIntPKConfigure(builder: builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
             this.NameIdentiﬁableConfigure(builder: builder,
-                maxNameLength: 3000,
-                maxDisplayNameLength: 3000,
-                maxSlugLength: 3000);
+                maxLengthOfName: 100,
+                maxLengthOfDisplayName: 100,
+                maxLengthOfSlug: 100);
+            this.StatusableConfigure(builder: builder);
+
             builder.HasOne(p => p.Address)
                     .WithMany()
                     .OnDelete(DeleteBehavior.NoAction)
                     .HasForeignKey(p => p.AddressId);
-            builder.Property(t => t.AddressId)
-                    .HasColumnType("Int");
+            builder.HasOne(p => p.EntityStatus)
+                    .WithMany()
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .HasForeignKey(p => p.EntityStatusId);
         }
     }
 }

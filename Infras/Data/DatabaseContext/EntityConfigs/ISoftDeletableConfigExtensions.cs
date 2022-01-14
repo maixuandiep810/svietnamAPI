@@ -5,15 +5,12 @@ using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
 {
-    public static class ISoftDeletableEntityConfigExtensions
+    public static class ISoftDeletableConfigExtensions
     {
-        public static void SoftDeletableEntityConfigure<TEntity>(this ISoftDeletableEntityConfig<TEntity> entityConfig, 
+        public static void SoftDeletableConfigure<TEntity>(this ISoftDeletableConfig<TEntity> entityConfig, 
             EntityTypeBuilder<TEntity> builder)
             where TEntity : class, ISoftDeletable
         {
-            builder.Property(t => t.IsDeleted)
-                    .HasColumnType("Bit")
-                    .HasDefaultValue(false);
         }
     }
 }

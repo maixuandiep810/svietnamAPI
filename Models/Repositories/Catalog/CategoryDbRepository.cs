@@ -15,9 +15,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace svietnamAPI.Models.Repositories.Catalog
 {
-    public class CategoryDbRepository : GenericDbRepository<Category, int>, ICategoryDbRepository
+    public class CategoryDbRepository : GenericDbRepository<Category, int>, 
+        ICategoryDbRepository
     {
-        public CategoryDbRepository(AppDbContext dbContext, IValidator<Category> validator, IMapper mapper, ILogger<CategoryDbRepository> logger) : base(dbContext, validator, mapper, logger)
+        public CategoryDbRepository(AppDbContext dbContext, 
+            IValidator<Category> validator, 
+            IMapper mapper, 
+            ILogger<CategoryDbRepository> logger) 
+            : base(dbContext, validator, mapper, logger)
         {
         }
 
@@ -36,10 +41,10 @@ namespace svietnamAPI.Models.Repositories.Catalog
                     return simpleCategories;
                 }
                 var categories_Image = await _dbContext.Set<Category>().Select(p => p)
-                                                .AsNoTracking()
-                                                .Include(p => p.BaseImage)
-                                                .Include(p => p.ThumbnailImage)
-                                                .ToListAsync();
+                    .AsNoTracking()
+                    .Include(p => p.BaseImage)
+                    .Include(p => p.ThumbnailImage)
+                    .ToListAsync();
                 return categories_Image;
             }
             catch (System.Exception systemEx)

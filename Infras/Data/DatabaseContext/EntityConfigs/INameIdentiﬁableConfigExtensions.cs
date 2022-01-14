@@ -2,30 +2,30 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
+using svietnamAPI.Infras.Common.Values.DatabaseContext;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
 {
     public static class INameIdentiﬁableConfigExtensions
     {
-        public static void NameIdentiﬁableConfigure<TEntity>(this INameIdentiﬁableConfig<TEntity> entityConfig, 
+        public static void NameIdentiﬁableConfigure<TEntity>(this INameIdentiﬁableConfig<TEntity> entityConfig,
             EntityTypeBuilder<TEntity> builder,
-            int maxNameLength = 3000,
-            int maxDisplayNameLength = 3000,
-            int maxSlugLength = 3000)
+            int maxLengthOfName = ColumnConstraintConst.Varchar_DefaultMaxLength,
+            int maxLengthOfDisplayName = ColumnConstraintConst.Nvarchar_DefaultMaxLength,
+            int maxLengthOfSlug = ColumnConstraintConst.Varchar_DefaultMaxLength)
             where TEntity : class, INameIdentiﬁable
         {
+            builder.HasAlternateKey(p => p.Name);
+            builder.HasAlternateKey(p => p.DisplayName);
             builder.Property(t => t.Name)
-                    .HasColumnType("Nvarchar")
-                    .HasMaxLength(maxNameLength)
-                    .HasDefaultValue(false);
+                    .HasColumnType(ColumnTypeConst.Varchar)
+                    .HasMaxLength(maxLengthOfName);
             builder.Property(t => t.DisplayName)
-                    .HasColumnType("Nvarchar")
-                    .HasMaxLength(maxDisplayNameLength)
-                    .HasDefaultValue(false);
+                   .HasColumnType(ColumnTypeConst.Nvarchar)
+                   .HasMaxLength(maxLengthOfDisplayName);
             builder.Property(t => t.Slug)
-                    .HasColumnType("Varchar")
-                    .HasMaxLength(maxSlugLength)
-                    .HasDefaultValue(false);
+                    .HasColumnType(ColumnTypeConst.Varchar)
+                    .HasMaxLength(maxLengthOfSlug);
         }
     }
 }

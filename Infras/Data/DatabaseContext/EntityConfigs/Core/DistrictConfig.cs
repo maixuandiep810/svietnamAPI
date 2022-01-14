@@ -1,24 +1,26 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
+using svietnamAPI.Infras.Common.Values.DatabaseContext;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
 {
     public class DistrictConfig : IEntityTypeConfiguration<District>, 
-        IBaseEntityConfig<District, int>,
-        ICodeIdentiﬁableConfig<District>,
+        IBaseEntityIntPKConfig<District>,
+        IGlobalCodeIdentiﬁableConfig<District>,
         INameIdentiﬁableConfig<District>
     {
         public void Configure(EntityTypeBuilder<District> builder)
         {
-            builder.ToTable("Districts");
-            this.BaseEntityConfigure(builder: builder);
-            this.CodeIdentiﬁableConfigure(builder: builder,
-                maxCodeLength: 3000);
+            builder.ToTable(TableNameConst.Districts);
+
+            this.BaseEntityIntPKConfigure(builder: builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
             this.NameIdentiﬁableConfigure(builder: builder,
-                maxNameLength: 3000,
-                maxDisplayNameLength: 3000,
-                maxSlugLength: 3000);
+                maxLengthOfName: 100,
+                maxLengthOfDisplayName: 100,
+                maxLengthOfSlug: 100);
+
             builder.HasOne(t => t.Province)
                         .WithMany(t => t.Districts)
                         .OnDelete(DeleteBehavior.NoAction)

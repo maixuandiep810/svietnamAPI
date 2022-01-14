@@ -5,8 +5,8 @@ using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
 {
-    public interface IAuditableEntityConfig<TEntity>
-        where TEntity: class, IAuditable
+    public interface IGlobalCodeIdentiﬁableConfig<TEntity>
+        where TEntity: class, IGlobalCodeIdentiﬁable
     {
     }
 }

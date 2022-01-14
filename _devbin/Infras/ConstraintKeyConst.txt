@@ -1,0 +1,10 @@
+namespace svietnamAPI.Infras.Common.Values.DatabaseContext
+{
+    public static class ConstraintKeyConst
+    {
+        public const string FK_Core_Documents_Core_DocumentTypes_DocumentTypeId 
+            = "FK_Core_Documents_Core_DocumentTypes_DocumentTypeId";
+        public const string FK_Core_Addresses_Core_Communes_CommuneId 
+            = "FK_Core_Addresses_Core_Communes_CommuneId";
+    }
+}

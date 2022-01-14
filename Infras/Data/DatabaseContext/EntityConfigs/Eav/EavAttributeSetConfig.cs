@@ -1,24 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using svietnamAPI.Infras.Common.Values.DatabaseContext;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Eav
 {
     public class EavAttributeSetConfig : IEntityTypeConfiguration<EavAttributeSet>,
-        IBaseEntityConfig<EavAttributeSet, int>,
-        ICodeIdentiﬁableConfig<EavAttributeSet>,
+        IBaseEntityIntPKConfig<EavAttributeSet>,
+        IGlobalCodeIdentiﬁableConfig<EavAttributeSet>,
         INameIdentiﬁableConfig<EavAttributeSet>
     {
         public void Configure(EntityTypeBuilder<EavAttributeSet> builder)
         {
-            builder.ToTable("EavAttributeSets");
-            this.BaseEntityConfigure(builder: builder);
-            this.CodeIdentiﬁableConfigure(builder: builder,
-                maxCodeLength: 3000);
+            builder.ToTable(TableNameConst.EavAttributeSets);
+
+            this.BaseEntityIntPKConfigure(builder: builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
             this.NameIdentiﬁableConfigure(builder: builder,
-                maxNameLength: 3000,
-                maxDisplayNameLength: 3000,
-                maxSlugLength: 3000);
+                maxLengthOfName: 100,
+                maxLengthOfDisplayName: 100,
+                maxLengthOfSlug: 100);
         }
     }
 }

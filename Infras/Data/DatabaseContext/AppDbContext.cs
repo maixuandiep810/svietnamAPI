@@ -43,6 +43,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext
 
             modelBuilder.ApplyConfiguration(new AddressConfig());
             modelBuilder.ApplyConfiguration(new CommuneConfig());
+            modelBuilder.ApplyConfiguration(new CountryConfig());
             modelBuilder.ApplyConfiguration(new DataTypeConfig());
             modelBuilder.ApplyConfiguration(new DistrictConfig());
             modelBuilder.ApplyConfiguration(new DocumentConfig());
@@ -79,6 +80,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext
 
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Commune> Communes { get; set; }
+        public DbSet<Country> Countries { get; set; }
         public DbSet<DataType> DataTypes { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Document> Documents { get; set; }

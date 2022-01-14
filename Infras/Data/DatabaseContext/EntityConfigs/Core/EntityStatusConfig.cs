@@ -1,24 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
+using svietnamAPI.Infras.Common.Values.DatabaseContext;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
 {
     public class EntityStatusConfig : IEntityTypeConfiguration<EntityStatus>, 
-        IBaseEntityConfig<EntityStatus, int>,
-        ICodeIdentiﬁableConfig<EntityStatus>,
+        IBaseEntityIntPKConfig<EntityStatus>,
+        IGlobalCodeIdentiﬁableConfig<EntityStatus>,
         INameIdentiﬁableConfig<EntityStatus>
     {
         public void Configure(EntityTypeBuilder<EntityStatus> builder)
         {
-            builder.ToTable("EntityStatuses");
-            this.BaseEntityConfigure(builder: builder);
-            this.CodeIdentiﬁableConfigure(builder: builder,
-                maxCodeLength: 3000);
+            builder.ToTable(TableNameConst.EntityStatuses);
+            this.BaseEntityIntPKConfigure(builder: builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
             this.NameIdentiﬁableConfigure(builder: builder,
-                maxNameLength: 3000,
-                maxDisplayNameLength: 3000,
-                maxSlugLength: 3000);
+                maxLengthOfName: 3000,
+                maxLengthOfDisplayName: 3000,
+                maxLengthOfSlug: 3000);
         }
     }
 }
