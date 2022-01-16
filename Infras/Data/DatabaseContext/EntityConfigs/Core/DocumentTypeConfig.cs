@@ -15,7 +15,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
             builder.ToTable(TableNameConst.DocumentTypes);
 
             this.BaseEntityIntPKConfigure(builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 100,
                 maxLengthOfDisplayName: 100,

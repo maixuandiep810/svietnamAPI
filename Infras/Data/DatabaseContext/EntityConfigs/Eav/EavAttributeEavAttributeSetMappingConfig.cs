@@ -12,7 +12,16 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Eav
         {
             builder.ToTable(TableNameConst.EavAttributeEavAttributeSetMappings);
 
-            this.BaseEntityIntPKConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+
+            builder.HasOne(p => p.EavAttributeSet)
+                    .WithMany(p => p.EavAttributeEavAttributeSetMappings)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasForeignKey(p => p.EavAttributeSetId);
+            builder.HasOne(p => p.EavAttribute)
+                    .WithMany(p => p.EavAttributeEavAttributeSetMappings)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasForeignKey(p => p.EavAttributeId);
         }
     }
 }

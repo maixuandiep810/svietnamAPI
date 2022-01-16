@@ -14,8 +14,8 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
         {
             builder.ToTable(TableNameConst.Communes);
 
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 3000,
                 maxLengthOfDisplayName: 3000,
@@ -23,7 +23,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
 
             builder.HasOne(t => t.District)
                         .WithMany(t => t.Communes)
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .HasForeignKey(t => t.DistrictId);
         }
     }

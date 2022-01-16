@@ -14,8 +14,8 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Eav
         {
             builder.ToTable(TableNameConst.EavAttributeGroups);
             
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 100,
                 maxLengthOfDisplayName: 100,

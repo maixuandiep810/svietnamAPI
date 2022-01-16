@@ -15,23 +15,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace svietnamAPI.Models.Repositories.Catalog
 {
-    public class CategoryDbRepository : GenericDbRepository<Category, int>, 
-        ICategoryDbRepository
+    public class GlobalProductCategoryDbRepository : GenericDbRepository<GlobalProductCategory, int>, 
+        IGlobalProductCategoryDbRepository
     {
-        public CategoryDbRepository(AppDbContext dbContext, 
-            IValidator<Category> validator, 
+        public GlobalProductCategoryDbRepository(AppDbContext dbContext, 
+            IValidator<GlobalProductCategory> validator, 
             IMapper mapper, 
-            ILogger<CategoryDbRepository> logger) 
+            ILogger<GlobalProductCategoryDbRepository> logger) 
             : base(dbContext, validator, mapper, logger)
         {
         }
 
         public async Task SoftDeleteAsync(int entityId)
         {
-            await SoftDeleteAsync<Category>(entityId);
+            await SoftDeleteAsync<GlobalProductCategory>(entityId);
         }
 
-        public async Task<List<Category>> GetAllAsync(bool isIncludeImage)
+        public async Task<List<GlobalProductCategory>> GetAllAsync(bool isIncludeImage)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace svietnamAPI.Models.Repositories.Catalog
                     var simpleCategories = await GetAllAsync();
                     return simpleCategories;
                 }
-                var categories_Image = await _dbContext.Set<Category>().Select(p => p)
+                var categories_Image = await _dbContext.Set<GlobalProductCategory>().Select(p => p)
                     .AsNoTracking()
                     .Include(p => p.BaseImage)
                     .Include(p => p.ThumbnailImage)

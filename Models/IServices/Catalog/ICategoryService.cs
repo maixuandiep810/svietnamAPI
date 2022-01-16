@@ -5,7 +5,7 @@ using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 
 namespace svietnamAPI.Models.IServices.Catalog
 {
-    public interface ICategoryService : IGenericService<Category, int>
+    public interface ICategoryService : IGenericService<GlobalProductCategory, int>
     {
         Task<List<TDto>> GetAllAsync<TDto>(bool isIncludeImage)
             where TDto : CategoryDto;

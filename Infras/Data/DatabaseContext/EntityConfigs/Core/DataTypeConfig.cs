@@ -13,15 +13,18 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
         public void Configure(EntityTypeBuilder<DataType> builder)
         {
             builder.ToTable(TableNameConst.DataTypes);
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 100,
                 maxLengthOfDisplayName: 100,
                 maxLengthOfSlug: 100);
+
             builder.Property(t => t.BackendName)
                     .HasColumnType(ColumnTypeConst.Nvarchar)
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsRequired();
         }
     }
 }

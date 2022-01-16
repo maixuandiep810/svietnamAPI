@@ -1,18 +1,21 @@
 using System;
-using svietnamAPI.Infras.Data.DatabaseContext.Entities.Auth;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
 
-namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog
+namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineStores
 {
     public class StoreProductCategory : IBaseEntity<int>,
+        IGlobalCodeIdentiﬁable,
+        IStoreCodeIdentiﬁable,
         IStatusable,
         ISoftDeletable,
         IAuditable
     {
         public int Id { get; set; }
-        public int CategoryId { get; set; }
-        public ProductCategory Category { get; set; }
+        public string GlobalCode { get; set; }
+        public string StoreCode { get; set; }
+        public int GlobalProductCategoryId { get; set; }
+        public GlobalProductCategory GlobalProductCategory { get; set; }
         public int StoreId { get; set; }
         public Store Store { get; set; }
         public int DisplayOrder { get; set; }

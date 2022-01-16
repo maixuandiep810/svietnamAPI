@@ -18,7 +18,7 @@ namespace svietnamAPI.StartupConfig.ServiceCollectionConfig.InfrasServices
             {
                 mc.AddProfile(new MappingProfile());
             });
-            mappingConfig.AssertConfigurationIsValid();
+            // mappingConfig.AssertConfigurationIsValid();
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
         }

@@ -6,7 +6,7 @@ using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineStores;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 
-namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Orders
+namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineOrders
 {
     public class ShoppingCartItem : IBaseEntity<int>,
         IGlobalCodeIdentiﬁable,
@@ -16,12 +16,12 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Orders
     {
         public int Id { get; set; }
         public string GlobalCode { get; set; }
-        public int CartId { get; set; }
-        public ShoppingCart Cart { get; set; }
+        public int ShoppingCartId { get; set; }
+        public ShoppingCart ShoppingCart { get; set; }
         public int ProductItemId { get; set; }
         public ProductItem ProductItem { get; set; }
         public int Quantity { get; set; }
-        public string CartItemNote { get; set; }
+        public string ShoppingCartItemNote { get; set; }
         public int EntityStatusId { get; set; }
         public EntityStatus EntityStatus { get; set; }
         public bool IsDeleted { get; set; }

@@ -16,11 +16,16 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Eav
         {
             builder.ToTable(TableNameConst.EavAttributeValues);
 
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
-            this.StatusableConfigure(builder: builder);
-            this.SoftDeletableConfigure(builder: builder);
-            this.AuditableConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
+            this.StatusableConfigure(builder);
+            this.SoftDeletableConfigure(builder);
+            this.AuditableConfigure(builder);
+
+            builder.HasOne(p => p.EavAttribute)
+                    .WithMany(p => p.EavAttributeValues)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasForeignKey(p => p.EavAttributeId);
 
             builder.Property(t => t.ValueToString)
                     .HasColumnType(ColumnTypeConst.Nvarchar)

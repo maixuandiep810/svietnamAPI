@@ -4,9 +4,9 @@ using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 
 namespace svietnamAPI.Models.IRepositories.Catalog
 {
-    public interface ICategoryDbRepository : IGenericDbRepository<Category, int>
+    public interface IGlobalProductCategoryDbRepository : IGenericDbRepository<GlobalProductCategory, int>
     {
         Task SoftDeleteAsync(int entityId);
-        Task<List<Category>> GetAllAsync(bool isIncludeImage);
+        Task<List<GlobalProductCategory>> GetAllAsync(bool isIncludeImage);
     }
 }

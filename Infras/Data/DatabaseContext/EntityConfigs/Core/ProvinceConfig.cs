@@ -14,8 +14,8 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
         {
             builder.ToTable(TableNameConst.Provinces);
 
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 100,
                 maxLengthOfDisplayName: 100,
@@ -23,7 +23,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
 
             builder.HasOne(t => t.Country)
                         .WithMany(t => t.Provinces)
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .HasForeignKey(t => t.CountryId);
         }
     }

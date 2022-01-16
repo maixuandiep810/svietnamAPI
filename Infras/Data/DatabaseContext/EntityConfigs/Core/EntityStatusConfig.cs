@@ -13,8 +13,8 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
         public void Configure(EntityTypeBuilder<EntityStatus> builder)
         {
             builder.ToTable(TableNameConst.EntityStatuses);
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 3000,
                 maxLengthOfDisplayName: 3000,

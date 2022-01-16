@@ -2,7 +2,7 @@ using System.Collections.Generic;
 namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Core
 {
     public class CountryDto
-    {bk,.
+    {
         public int Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }

@@ -18,24 +18,24 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Catalog
         {
             builder.ToTable(TableNameConst.ProductItems);
 
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 1000,
                 maxLengthOfDisplayName: 1000,
                 maxLengthOfSlug: 1000);
-            this.StoreCodeIdentiﬁableConfigure(builder: builder);
-            this.StatusableConfigure(builder: builder);
-            this.SoftDeletableConfigure(builder: builder);
-            this.AuditableConfigure(builder: builder);
+            this.StoreCodeIdentiﬁableConfigure(builder, isRequired: false);
+            this.StatusableConfigure(builder);
+            this.SoftDeletableConfigure(builder);
+            this.AuditableConfigure(builder);
 
             builder.HasOne(p => p.Product)
                     .WithMany(p => p.ProductItems)
-                    .OnDelete(DeleteBehavior.NoAction)
+                    .OnDelete(DeleteBehavior.Restrict)
                     .HasForeignKey(p => p.ProductId);
             builder.HasOne(p => p.EntityStatus)
                     .WithMany()
-                    .OnDelete(DeleteBehavior.NoAction)
+                    .OnDelete(DeleteBehavior.Restrict)
                     .HasForeignKey(p => p.EntityStatusId);
 
             builder.Property(t => t.SKU)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
 
@@ -19,7 +20,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Auth
         public string PhoneNumber { get; set; }
         public string Salt { get; set; }
         public string HashedPassword { get; set; }
-        public DateTime BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
         public int EntityStatusId { get; set; }
         public EntityStatus EntityStatus { get; set; }
         public bool IsDeleted { get; set; }
@@ -27,5 +28,12 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Auth
         public int? CreatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int? UpdatedBy { get; set; }
+
+        public ICollection<AddressBook> AddressBooks  { get; set; }
+
+        public User()
+        {
+            AddressBooks = new List<AddressBook>();
+        }
     }
 }

@@ -18,18 +18,23 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
             builder.ToTable(TableNameConst.Documents);
 
             this.BaseEntityIntPKConfigure(builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 1000,
                 maxLengthOfDisplayName: 1000,
                 maxLengthOfSlug: 1000);
-            this.StatusableConfigure(builder: builder);
-            this.SoftDeletableConfigure(builder: builder);
-            this.AuditableConfigure(builder: builder);
+            this.StatusableConfigure(builder);
+            this.SoftDeletableConfigure(builder);
+            this.AuditableConfigure(builder);
 
             builder.HasOne(p => p.DocumentType)
                     .WithMany(p => p.Documents)
+                    .OnDelete(DeleteBehavior.Restrict)
                     .HasForeignKey(p => p.DocumentTypeId);
+            builder.HasOne(p => p.EntityStatus)
+                    .WithMany()
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasForeignKey(p => p.EntityStatusId);
 
             builder.Property(t => t.Title)
                     .HasColumnType(ColumnTypeConst.Nvarchar)

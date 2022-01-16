@@ -17,15 +17,20 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Eav
         {
             builder.ToTable(TableNameConst.EavAttributes);
 
-            this.BaseEntityIntPKConfigure(builder: builder);
-            this.GlobalCodeIdentiﬁableConfigure(builder: builder);
+            this.BaseEntityIntPKConfigure(builder);
+            this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 100,
                 maxLengthOfDisplayName: 100,
                 maxLengthOfSlug: 100);
-            this.StatusableConfigure(builder: builder);
-            this.SoftDeletableConfigure(builder: builder);
-            this.AuditableConfigure(builder: builder);
+            this.StatusableConfigure(builder);
+            this.SoftDeletableConfigure(builder);
+            this.AuditableConfigure(builder);
+
+            builder.HasOne(p => p.EavAttributeGroup)
+                    .WithMany()
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasForeignKey(p => p.EavAttributeGroupId);
         }
     }
 }

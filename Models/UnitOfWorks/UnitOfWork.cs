@@ -23,7 +23,7 @@ namespace svietnamAPI.Models.UnitOfWorks
         //  Catalog
         //
         //
-        private ICategoryDbRepository _categoryDbRepo { get; set; }
+        private IGlobalProductCategoryDbRepository _globalProductCategoryDbRepo { get; set; }
         private IProductDbRepository _productDbRepo { get; set; }
 
         //
@@ -31,17 +31,18 @@ namespace svietnamAPI.Models.UnitOfWorks
         //  Catalog
         //
         //
-        public ICategoryDbRepository CategoryDbRepo
+        public IGlobalProductCategoryDbRepository GlobalProductCategoryDbRepo
         {
             get
             {
-                if (_categoryDbRepo == null)
+                if (_globalProductCategoryDbRepo == null)
                 {
-                    var loggerCategoryRepo = (ILogger<CategoryDbRepository>)_serviceProvider.GetService(typeof(ILogger<CategoryDbRepository>));
+                    var loggerGlobalProductCategoryDbRepo = (ILogger<GlobalProductCategoryDbRepository>)_serviceProvider.GetService(
+                        typeof(ILogger<GlobalProductCategoryDbRepository>));
                     // var validatorCategory = (IValidator<Category>)_serviceProvider.GetService(typeof(IValidator<Category>));
-                    _categoryDbRepo = new CategoryDbRepository(_appDbContext, null, _mapper, loggerCategoryRepo);
+                    _globalProductCategoryDbRepo = new GlobalProductCategoryDbRepository(_appDbContext, null, _mapper, loggerGlobalProductCategoryDbRepo);
                 }
-                return _categoryDbRepo;
+                return _globalProductCategoryDbRepo;
             }
         }
 

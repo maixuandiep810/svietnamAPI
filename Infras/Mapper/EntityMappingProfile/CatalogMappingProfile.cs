@@ -15,9 +15,9 @@ namespace svietnamAPI.Infras.Mapper.EntityMappingProfile
             //  Category
             //
             //
-            mappingProfile.CreateMap<Category, CategoryDto>(MemberList.Destination);
-            mappingProfile.CreateMap<CreateCategoryDto, Category>(MemberList.Source);
-            mappingProfile.CreateMap<DefaultFieldCategoryDto, Category>(MemberList.Source);
+            // mappingProfile.CreateMap<Category, CategoryDto>(MemberList.Destination);
+            // mappingProfile.CreateMap<CreateCategoryDto, Category>(MemberList.Source);
+            // mappingProfile.CreateMap<DefaultFieldCategoryDto, Category>(MemberList.Source);
             //
             //
             //  Product

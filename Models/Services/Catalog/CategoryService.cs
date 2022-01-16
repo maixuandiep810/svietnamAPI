@@ -11,10 +11,10 @@ using svietnamAPI.Common.Dtos.Catalog.Category;
 
 namespace svietnamAPI.Models.Services.Catalog
 {
-    public class CategoryService : GenericService<Category, int, ICategoryDbRepository>, ICategoryService
+    public class CategoryService : GenericService<GlobalProductCategory, int, IGlobalProductCategoryDbRepository>, ICategoryService
     {
         public CategoryService(IMapper mapper, IUnitOfWork unitOfWork, IServiceWrapper serviceWrapper, ILogger logger)
-        : base(mapper, unitOfWork, unitOfWork.CategoryDbRepo, serviceWrapper, logger)
+        : base(mapper, unitOfWork, unitOfWork.GlobalProductCategoryDbRepo, serviceWrapper, logger)
         {
 
         }
@@ -29,9 +29,9 @@ namespace svietnamAPI.Models.Services.Catalog
 
         public async Task CreateAsync(CreateCategoryDto createCategoryDto)
         {
-            var createCategoryEntity = _mapper.Map<CreateCategoryDto, Category>(createCategoryDto);
-            createCategoryEntity = _mapper.Map<DefaultFieldCategoryDto, Category>(new DefaultFieldCategoryDto(), createCategoryEntity);
-            await _unitOfWork.CategoryDbRepo.InsertAsync(createCategoryEntity);
+            var createCategoryEntity = _mapper.Map<CreateCategoryDto, GlobalProductCategory>(createCategoryDto);
+            createCategoryEntity = _mapper.Map<DefaultFieldCategoryDto, GlobalProductCategory>(new DefaultFieldCategoryDto(), createCategoryEntity);
+            await _unitOfWork.GlobalProductCategoryDbRepo.InsertAsync(createCategoryEntity);
             await _unitOfWork.CommitAsync();
         }
 

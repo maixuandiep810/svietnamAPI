@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineOrders;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog
 {
@@ -37,12 +38,14 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog
         public int? CreatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int? UpdatedBy { get; set; }
-        
+
         public ICollection<ProductItemDetail> ProductItemDetails { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; }
 
         public ProductItem()
         {
             ProductItemDetails = new List<ProductItemDetail>();
+            OrderItems = new List<OrderItem>();
         }
     }
 }

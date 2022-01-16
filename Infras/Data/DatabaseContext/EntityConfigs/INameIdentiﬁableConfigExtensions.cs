@@ -17,12 +17,15 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
         {
             builder.HasAlternateKey(p => p.Name);
             builder.HasAlternateKey(p => p.DisplayName);
+            
             builder.Property(t => t.Name)
                     .HasColumnType(ColumnTypeConst.Varchar)
-                    .HasMaxLength(maxLengthOfName);
+                    .HasMaxLength(maxLengthOfName)
+                    .IsRequired();
             builder.Property(t => t.DisplayName)
-                   .HasColumnType(ColumnTypeConst.Nvarchar)
-                   .HasMaxLength(maxLengthOfDisplayName);
+                    .HasColumnType(ColumnTypeConst.Nvarchar)
+                    .HasMaxLength(maxLengthOfDisplayName)
+                    .IsRequired();
             builder.Property(t => t.Slug)
                     .HasColumnType(ColumnTypeConst.Varchar)
                     .HasMaxLength(maxLengthOfSlug);

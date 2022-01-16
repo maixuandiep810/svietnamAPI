@@ -4,26 +4,27 @@ using System;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Auth;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineStores;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 
-namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Orders
+namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineOrders
 {
-    public class ShoppingCart : IBaseEntity<int>,
+    public class OrderItem : IBaseEntity<int>,
         IGlobalCodeIdentiﬁable,
+        IStoreCodeIdentiﬁable,
         IStatusable,
         ISoftDeletable,
         IAuditable
     {
         public int Id { get; set; }
         public string GlobalCode { get; set; }
-        public int ParentId { get; set; }
-        public ShoppingCart ParentCart { get; set; }
-        public int BuyerId { get; set; }
-        public User User { get; set; }
-        public int StoreId { get; set; }
-        public Store Store { get; set; }
-        public int ShippingAddressId { get; set; }
-        public Address ShippingAddress { get; set; }
-        public string CartNote { get; set; }
+        public string StoreCode { get; set; }
+        public int OrderId { get; set; }
+        public Order Order { get; set; }
+        public int ProductItemId { get; set; }
+        public ProductItem ProductItem { get; set; }
+        public decimal ProductItemPrice { get; set; }
+        public int Quantity { get; set; }
+        public string OrderItemNote { get; set; }
         public int EntityStatusId { get; set; }
         public EntityStatus EntityStatus { get; set; }
         public bool IsDeleted { get; set; }
@@ -32,13 +33,8 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Orders
         public DateTime? UpdatedAt { get; set; }
         public int? UpdatedBy { get; set; }
 
-        public ICollection<ShoppingCart> Children { get; set; }
-        public ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
-
-        public ShoppingCart()
+        public OrderItem()
         {
-            Children = new List<ShoppingCart>();
-            ShoppingCartItems = new List<ShoppingCartItem>();
         }
     }
 }

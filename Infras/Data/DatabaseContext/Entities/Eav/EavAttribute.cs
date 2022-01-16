@@ -1,3 +1,4 @@
+using System.Collections;
 using System;
 using System.Collections.Generic;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
@@ -32,10 +33,12 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav
         public int? UpdatedBy { get; set; }
 
         public ICollection<EavAttributeEavAttributeSetMapping> EavAttributeEavAttributeSetMappings { get; set; }
+        public ICollection<EavAttributeValue> EavAttributeValues { get; set; }
 
         public EavAttribute()
         {
             EavAttributeEavAttributeSetMappings = new List<EavAttributeEavAttributeSetMapping>();
+            EavAttributeValues = new List<EavAttributeValue>();
         }
     }
 }

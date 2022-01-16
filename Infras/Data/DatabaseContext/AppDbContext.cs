@@ -1,11 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.Auth;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.Logistics;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineOrders;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.OnlineStores;
+using svietnamAPI.Infras.Data.DatabaseContext.Entities.Payments;
+using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Auth;
 using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Catalog;
 using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core;
 using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Eav;
+using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Logistics;
+using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.OnlineOrders;
+using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.OnlineStores;
+using svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Payments;
 
 namespace svietnamAPI.Infras.Data.DatabaseContext
 {
@@ -38,6 +48,23 @@ namespace svietnamAPI.Infras.Data.DatabaseContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //
+            //  Auth
+            //
+            modelBuilder.ApplyConfiguration(new AddressBookConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
+
+            //
+            //  Catalog
+            //
+
+            modelBuilder.ApplyConfiguration(new GlobalProductCategoryConfig());
+            modelBuilder.ApplyConfiguration(new ManufacturerConfig());
+            modelBuilder.ApplyConfiguration(new ProductConfig());
+            modelBuilder.ApplyConfiguration(new ProductItemConfig());
+            modelBuilder.ApplyConfiguration(new ProductItemDetailConfig());
+            modelBuilder.ApplyConfiguration(new SupplierConfig());
+
+            //
             //  Core
             //
 
@@ -63,16 +90,49 @@ namespace svietnamAPI.Infras.Data.DatabaseContext
             modelBuilder.ApplyConfiguration(new EavAttributeValueConfig());
 
             //
-            //  Catalog
+            //  Logistics
+            //
+            modelBuilder.ApplyConfiguration(new ShippingTableRateConfig());
+
+            //
+            //  OnlineOrders
             //
 
-            modelBuilder.ApplyConfiguration(new CategoryConfig());
-            modelBuilder.ApplyConfiguration(new ManufacturerConfig());
-            modelBuilder.ApplyConfiguration(new ProductConfig());
-            modelBuilder.ApplyConfiguration(new ProductItemConfig());
-            modelBuilder.ApplyConfiguration(new ProductItemDetailConfig());
-            modelBuilder.ApplyConfiguration(new SupplierConfig());
+            modelBuilder.ApplyConfiguration(new OrderConfig());
+            modelBuilder.ApplyConfiguration(new OrderItemConfig());
+            modelBuilder.ApplyConfiguration(new ShoppingCartConfig());
+            modelBuilder.ApplyConfiguration(new ShoppingCartItemConfig());
+
+            //
+            //  OnlineStore
+            //
+
+            modelBuilder.ApplyConfiguration(new StoreConfig());
+            modelBuilder.ApplyConfiguration(new StoreProductCategoryConfig());
+            modelBuilder.ApplyConfiguration(new StoreSellerConfig());
+
+            //
+            //  Payments
+            //
+            modelBuilder.ApplyConfiguration(new PaymentConfig());
         }
+        //
+        //  Auth
+        //
+        public DbSet<AddressBook> AddressBooks { get; set; }
+        public DbSet<User> Users { get; set; }
+
+
+        //
+        //  Catalog
+        //
+
+        public DbSet<GlobalProductCategory> GlobalProductCategories { get; set; }
+        public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductItem> ProductItems { get; set; }
+        public DbSet<ProductItemDetail> ProductItemDetails { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
         //
         //  Core
@@ -99,15 +159,33 @@ namespace svietnamAPI.Infras.Data.DatabaseContext
         public DbSet<EavAttributeSet> EavAttributeSets { get; set; }
 
         //
-        //  Catalog
+        //  Logistics
+        //
+        public DbSet<ShippingTableRate> ShippingTableRates { get; set; }
+
+
+        //
+        //  OnlineOrders
         //
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Manufacturer> Manufacturers { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductItem> ProductItems { get; set; }
-        public DbSet<ProductItemDetail> ProductItemDetails { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
+        //
+        //  OnlineStores
+        //
+
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<StoreProductCategory> StoreProductCategories { get; set; }
+        public DbSet<StoreSeller> StoreSellers { get; set; }
+
+        //
+        //  Payments
+        //
+
+        public DbSet<Payment> Payments { get; set; }
 
     }
 }
