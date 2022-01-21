@@ -15,11 +15,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Core
         public int DistrictId { get; set; }
         public District District { get; set; }
 
-        public ICollection<Address> Addresses { get; set; }
 
         public Commune()
         {
-            Addresses = new List<Address>();
         }
     }
 }

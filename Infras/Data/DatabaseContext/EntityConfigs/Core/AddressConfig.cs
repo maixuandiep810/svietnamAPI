@@ -23,8 +23,22 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
                 maxLengthOfSlug: 100);
 
             builder.HasOne(t => t.Commune)
-                        .WithMany(t => t.Addresses)
-                        .HasForeignKey(t => t.CommuneId);
+                        .WithMany()
+                        .HasForeignKey(t => t.CommuneId)
+                        .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(t => t.District)
+                        .WithMany()
+                        .HasForeignKey(t => t.DistrictId)
+                        .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(t => t.Province)
+                        .WithMany()
+                        .HasForeignKey(t => t.ProvinceId)
+                        .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(t => t.Country)
+                        .WithMany()
+                        .HasForeignKey(t => t.CountryId)
+                        .OnDelete(DeleteBehavior.Restrict);
+                        
 
             builder.Property(t => t.ContactName)
                     .HasColumnType(ColumnTypeConst.Nvarchar)

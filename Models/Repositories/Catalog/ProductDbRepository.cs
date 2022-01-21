@@ -21,54 +21,20 @@ namespace svietnamAPI.Models.Repositories.Catalog
         {
         }
 
-        public async Task SoftDeleteAsync(int entityId)
+        public async Task<List<Product>> GetFullAllOrNullAsync(bool shouldIncludeProductItem)
         {
-            await SoftDeleteAsync<Product>(entityId);
-        }
-
-        public async Task<List<Product>> GetAllAsync(bool isIncludeProductItem,
-            bool isIncludeProductItemDetail,
-            bool isIncludeEavValue)
-        {
-            try
+            var productsQueryable = _dbContext.Set<Product>()
+                .Select(p => p)
+                .AsNoTracking();
+            if (shouldIncludeProductItem == true)
             {
-                if (isIncludeProductItem == false)
-                {
-                    var simpleProducts = await GetAllAsync();
-                    return simpleProducts;
-                }
-                if (isIncludeProductItemDetail == false)
-                {
-                    var products_PItem = await _dbContext.Set<Product>()
-                        .AsNoTracking()
-                        .Select(p => p)
-                        .Include(p => p.ProductItems)
-                        .ToListAsync();
-                    return products_PItem;
-                }
-                if (isIncludeEavValue == false)
-                {
-                    var products_PItem_PItemDetail = await _dbContext.Set<Product>()
-                        .AsNoTracking()
-                        .Select(p => p)
-                        .Include(p => p.ProductItems)
-                        .ThenInclude(p => p.ProductItemDetails)
-                        .ToListAsync();
-                    return products_PItem_PItemDetail;
-                }
-                var products_PItem_PItemDetail_EavValue = await _dbContext.Set<Product>()
-                    .AsNoTracking()
-                    .Select(p => p)
-                    .Include(p => p.ProductItems)
+                productsQueryable = productsQueryable.Include(p => p.ProductItems)
                     .ThenInclude(p => p.ProductItemDetails)
-                    .ThenInclude(p => p.EavAttributeValue)
-                    .ToListAsync();
-                return products_PItem_PItemDetail_EavValue;
+                    .ThenInclude(p => p.EavAttributeValue);
             }
-            catch (System.Exception systemEx)
-            {
-                throw new RepositoryAppException(systemEx);
-            }
+            var productEntities = await productsQueryable.ToListAsync();
+            return productEntities;
+
         }
     }
 }

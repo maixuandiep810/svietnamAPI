@@ -8,13 +8,18 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
     public static class IBaseEntityIntPKConfigExtensions
     {
         public static void BaseEntityIntPKConfigure<TEntity>(this IBaseEntityIntPKConfig<TEntity> entityConfig,
-            EntityTypeBuilder<TEntity> builder)
+            EntityTypeBuilder<TEntity> builder,
+            bool shouldUseIdentityColumn = true)
             where TEntity : class, IBaseEntity<int>
         {
             builder.HasKey(o => o.Id);
-            builder.Property(p => p.Id)
-                    .UseIdentityColumn(seed: ColumnConstraintConst.IntPKSeed, 
-                        increment: ColumnConstraintConst.IntPKSeed);
+
+            if (shouldUseIdentityColumn == true)
+            {
+                builder.Property(p => p.Id)
+                        .UseIdentityColumn(seed: ColumnConstraintConst.IntPKSeed, 
+                            increment: ColumnConstraintConst.IntPKIncrement);
+            }
         }
     }
 }

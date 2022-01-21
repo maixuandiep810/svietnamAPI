@@ -15,13 +15,12 @@ using svietnamAPI.Models.IUnitOfWorks;
 
 namespace svietnamAPI.Models.IServices
 {
-    public interface IGenericService<TEntity, TId>
+    public interface IGenericService<TEntity, TId, TDto>
     where TId : struct
-    where TEntity : class, IBaseEntity<TId>
+    where TEntity : class, IBaseEntity<TId>, new()
+    where TDto : class, new()
     {
-        Task<List<TDto>> GetAllAsync<TDto>()
-        where TDto : class;
-        Task<TDto> GetByIdAsync<TDto>(TId id)
-         where TDto : class;
+        Task<List<TDto>> GetBasicAllOrNullAsync();
+        Task<TDto> GetBasicByIdOrNullAsync(TId id);
     }
 }

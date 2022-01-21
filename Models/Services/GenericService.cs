@@ -9,10 +9,11 @@ using svietnamAPI.Models.IUnitOfWorks;
 
 namespace svietnamAPI.Models.Services
 {
-    public abstract partial class GenericService<TEntity, TId, TDbRepo> : IGenericService<TEntity, TId>
+    public abstract partial class GenericService<TEntity, TId, TDbRepo, TDto> : IGenericService<TEntity, TId, TDto>
     where TId : struct
-    where TEntity : class, IBaseEntity<TId>
+    where TEntity : class, IBaseEntity<TId>, new()
     where TDbRepo : IGenericDbRepository<TEntity, TId>
+    where TDto : class, new()
     {
         protected readonly IMapper _mapper;
         protected readonly IUnitOfWork _unitOfWork;
@@ -29,18 +30,16 @@ namespace svietnamAPI.Models.Services
             _logger = logger;
         }
 
-        public async Task<List<TDto>> GetAllAsync<TDto>()
-        where TDto : class
+        public async Task<List<TDto>> GetBasicAllOrNullAsync()
         {
-            var entities = await _tDbRepo.GetAllAsync();
+            var entities = await _tDbRepo.GetBasicAllOrNullAsync();
             var dtos = _mapper.Map<List<TEntity>, List<TDto>>(entities);
             return dtos;
         }
 
-        public async Task<TDto> GetByIdAsync<TDto>(TId id)
-        where TDto : class
+        public async Task<TDto> GetBasicByIdOrNullAsync(TId id)
         {
-            var entity = await _tDbRepo.GetByIdAsync(id);
+            var entity = await _tDbRepo.GetBasicByIdOrNullAsync(id);
             var dto = _mapper.Map<TEntity, TDto>(entity);
             return dto;
         }

@@ -9,7 +9,6 @@ using FluentValidation;
 // using svietnamAPI.Infras.Validation.Entities.Catalog;
 // using svietnamAPI.Infras.Validation.Dtos.Catalog;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
-using svietnamAPI.Common.Dtos.Catalog;
 
 
 namespace svietnamAPI.StartupConfig.ServiceCollectionConfig.InfrasServices

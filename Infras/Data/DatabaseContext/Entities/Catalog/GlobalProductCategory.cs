@@ -25,9 +25,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog
         public int ChildrenCount { get; set; }
         public int ProductsCount { get; set; }
         public int DisplayOrder { get; set; }
-        public int BaseImageId { get; set; }
+        public int? BaseImageId { get; set; }
         public Document BaseImage { get; set; }
-        public int ThumbnailImageId { get; set; }
+        public int? ThumbnailImageId { get; set; }
         public Document ThumbnailImage { get; set; }
         public int EntityStatusId { get; set; }
         public EntityStatus EntityStatus { get; set; }

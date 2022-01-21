@@ -15,10 +15,11 @@ using svietnamAPI.Models.IUnitOfWorks;
 
 namespace svietnamAPI.Models.Services
 {
-    public abstract partial class GenericService<TEntity, TId, TDbRepo> : IGenericService<TEntity, TId>
+    public abstract partial class GenericService<TEntity, TId, TDbRepo, TDto> : IGenericService<TEntity, TId, TDto>
     where TId : struct
-    where TEntity : class, IBaseEntity<TId>
+    where TEntity : class, IBaseEntity<TId>, new()
     where TDbRepo : IGenericDbRepository<TEntity, TId>
+    where TDto : class, new()
     {
     }
 }

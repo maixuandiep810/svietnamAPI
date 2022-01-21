@@ -21,6 +21,5 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav
         public int? CreatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int? UpdatedBy { get; set; }
-
     }
 }

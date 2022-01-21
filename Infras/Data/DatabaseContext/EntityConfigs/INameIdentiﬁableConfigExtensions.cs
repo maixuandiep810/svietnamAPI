@@ -16,7 +16,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
             where TEntity : class, INameIdentiﬁable
         {
             builder.HasAlternateKey(p => p.Name);
-            builder.HasAlternateKey(p => p.DisplayName);
             
             builder.Property(t => t.Name)
                     .HasColumnType(ColumnTypeConst.Varchar)
@@ -28,7 +27,8 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
                     .IsRequired();
             builder.Property(t => t.Slug)
                     .HasColumnType(ColumnTypeConst.Varchar)
-                    .HasMaxLength(maxLengthOfSlug);
+                    .HasMaxLength(maxLengthOfSlug)
+                    .IsRequired(false);
         }
     }
 }

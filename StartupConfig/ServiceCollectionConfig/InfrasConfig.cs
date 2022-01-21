@@ -14,8 +14,11 @@ namespace svietnamAPI.StartupConfig.ServiceCollectionConfig
     {
         public static void AddInfras(this IServiceCollection services, IConfiguration configuration)
         {
-            // Add DbContext
+            // Add AppDbContext
             services.AddAppDbContext(configuration);
+
+            // Add AddAppStaticFileContext
+            services.AddAppStaticFileContext(configuration);
 
             // Add AutoMapper
             services.AddAutoMapper();

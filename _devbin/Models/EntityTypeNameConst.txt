@@ -1,0 +1,8 @@
+namespace svietnamAPI.Common.Dtos.Values
+{
+    public static partial class EntityTypeNameConst
+    {
+        public const string Product = "Product";
+        public const string GlobalProductCategory = "GlobalProductCategory";
+    }
+}

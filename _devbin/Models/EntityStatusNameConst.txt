@@ -1,0 +1,9 @@
+namespace svietnamAPI.Common.Dtos.Values
+{
+    public static partial class EntityStatusNameConst
+    {
+        public const string GlobalProductCategory_Enabled = "GlobalProductCategory-Enabled";
+        public const string GlobalProductCategory_Disabled = "GlobalProductCategory-Disabled";
+        public const string GlobalProductCategory_Default = "GlobalProductCategory-Disabled";
+    }
+}

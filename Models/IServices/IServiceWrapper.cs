@@ -5,7 +5,7 @@ namespace svietnamAPI.Models.IServices
 {
     public interface IServiceWrapper
     {
-        ICategoryService CategoryService { get; }
+        IGlobalProductCategoryService GlobalProductCategoryService { get; }
         IProductService ProductService { get; }
     }
 }

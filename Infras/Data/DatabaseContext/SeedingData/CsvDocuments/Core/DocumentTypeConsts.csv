@@ -1,0 +1,7 @@
+"Id","GlobalCode","Name","DisplayName","Slug","Extension","MimeType"
+10001,,"Image/png","Image","image",".png","image/png"
+10002,,"Image/jpg","Image","image",".jpg","image/jpeg"
+10003,,"Image/jpeg","Image","image",".jpeg","image/jpeg"
+10004,,"Csv","Csv","csv",".csv","text/csv"
+10005,,"Video/mp4","Video","video",".mp4","video/mp4"
+10006,,"Video/mpeg","Video","video",".mpeg","video/mpeg"

@@ -12,9 +12,10 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Eav
     {
         public void Configure(EntityTypeBuilder<EavAttributeGroup> builder)
         {
-            builder.ToTable(TableNameConst.EavAttributeGroups);
+            builder.ToTable(TableNameConst.EavAttributeGroupConsts);
             
-            this.BaseEntityIntPKConfigure(builder);
+            this.BaseEntityIntPKConfigure(builder: builder, 
+                shouldUseIdentityColumn: false);
             this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 100,

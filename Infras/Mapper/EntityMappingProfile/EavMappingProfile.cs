@@ -1,8 +1,6 @@
 using AutoMapper;
-using svietnamAPI.Infras.Data.DatabaseContext.Entities.Core;
-using svietnamAPI.Common.Dtos.Core.Document;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav;
-using svietnamAPI.Common.Dtos.Eav;
+using svietnamAPI.Common.Dtos.DtoToEntities.Eav;
 
 namespace svietnamAPI.Infras.Mapper.EntityMappingProfile
 {

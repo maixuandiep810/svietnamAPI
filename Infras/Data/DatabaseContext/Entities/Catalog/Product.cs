@@ -28,9 +28,11 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog
         public int ItemsCount { get; set; }
         public int StoreId { get; set; }
         public Store Store { get; set; }
+        public int CountryOfOriginId { get; set; }
+        public Country CountryOfOrigin { get; set; }
         public int ManufacturerId { get; set; }
         public Manufacturer Manufacturer { get; set; }
-        public int SupplierId { get; set; }
+        public int? SupplierId { get; set; }
         public Supplier Supplier { get; set; }
         public int EntityStatusId { get; set; }
         public EntityStatus EntityStatus { get; set; }

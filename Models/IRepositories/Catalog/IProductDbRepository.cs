@@ -6,9 +6,6 @@ namespace svietnamAPI.Models.IRepositories.Catalog
 {
     public interface IProductDbRepository : IGenericDbRepository<Product, int>
     {
-        Task SoftDeleteAsync(int entityId);
-        Task<List<Product>> GetAllAsync(bool isIncludeProductItem,
-            bool isIncludeProductItemDetail,
-            bool isIncludeEavValue);
+        Task<List<Product>> GetFullAllOrNullAsync(bool shouldIncludeProductItem);
     }
 }

@@ -16,7 +16,7 @@ namespace svietnamAPI.Models.Repositories
 {
     public abstract partial class GenericDbRepository<TEntity, TId> : IGenericDbRepository<TEntity, TId>
     where TId : struct
-    where TEntity : class, IBaseEntity<TId>
+    where TEntity : class, IBaseEntity<TId>, new()
     {
         protected readonly AppDbContext _dbContext;
         protected readonly IValidator<TEntity> _validator;
@@ -30,21 +30,21 @@ namespace svietnamAPI.Models.Repositories
             _mapper = mapper;
         }
 
-        public async Task<List<TEntity>> GetAllAsync()
+        public async Task<List<TEntity>> GetBasicAllOrNullAsync()
         {
             var entites = await FindAsync<TEntity>(p => p, p => true, isAsNoTracking: true);
             return entites;
         }
 
-        public async Task<TEntity> GetByIdAsync(TId entityId)
+        public async Task<TEntity> GetBasicByIdOrNullAsync(TId entityId)
         {
             var entity = (await FindAsync<TEntity>(p => p, p => p.Id.Equals(entityId), isAsNoTracking: true))?.FirstOrDefault();
             return entity;
         }
 
-        public async Task<TEntity> GetByIdIfNotNullAsync(TId entityId)
+        public async Task<TEntity> GetBasicByIdOrFailAsync(TId entityId)
         {
-            var entity = await GetByIdAsync(entityId);
+            var entity = await GetBasicByIdOrNullAsync(entityId);
             if (entity == null)
             {
                 throw new NotFoundEntityAppException($"Entity Not Found: Id = {entityId}");
@@ -52,118 +52,62 @@ namespace svietnamAPI.Models.Repositories
             return entity;
         }
 
+        public async Task<TNameIdentifiable> GetBasicByUniqueNameOrNullAsync<TNameIdentifiable>(string enityUniqueName)
+            where TNameIdentifiable : TEntity, INameIdentiﬁable, new()
+        {
+            var entity = (TNameIdentifiable)(await FindAsync<TEntity>(p => p, p => ((INameIdentiﬁable)p).Name.Equals(enityUniqueName), isAsNoTracking: true))?.FirstOrDefault();
+            return entity;
+        }
+
         public async Task InsertAsync(TEntity entity)
         {
-            try
-            {
-                await _dbContext.Set<TEntity>().AddAsync(entity);
-            }
-            catch (EntityValidationFailedAppException entityValidationFailedAppEx)
-            {
-                throw entityValidationFailedAppEx;
-            }
-            catch (System.Exception systemEx)
-            {
-                _logger.LogDebug(systemEx, "");
-                _logger.LogInformation(systemEx, "");
-                throw new RepositoryAppException(systemEx);
-            }
+            await _dbContext.Set<TEntity>().AddAsync(entity);
         }
 
-        public async Task UpdateAsync<TUpdateDto>(TId entityId, TUpdateDto updateDto)
+        public void Update<TUpdateDto>(TId entityId, TUpdateDto updateDto)
         {
-            try
-            {
-                var entity = await GetByIdIfNotNullAsync(entityId);
-                entity = _mapper.Map<TUpdateDto, TEntity>(updateDto, entity);
-            }
-            catch (NotFoundEntityAppException notFoundEntityAppEx)
-            {
-                throw notFoundEntityAppEx;
-            }
-            catch (EntityValidationFailedAppException entityValidationFailedAppEx)
-            {
-                throw entityValidationFailedAppEx;
-            }
-            catch (System.Exception systemEx)
-            {
-                _logger.LogDebug(systemEx, "");
-                _logger.LogInformation(systemEx, "");
-                throw new RepositoryAppException(systemEx);
-            }
+            var entity = new TEntity { Id = entityId };
+            _dbContext.Set<TEntity>().Attach(entity);
+            entity = _mapper.Map<TUpdateDto, TEntity>(updateDto, entity);
         }
 
-        public async Task UpdateAsync<TUpdateDto>(TId entityId, Action<TEntity> updateAction)
+        public void Update<TUpdateDto>(TId entityId, Action<TEntity> updateAction)
         {
-            try
-            {
-                var entity = await GetByIdIfNotNullAsync(entityId);
-                updateAction(entity);
-            }
-            catch (EntityValidationFailedAppException entityValidationFailedAppEx)
-            {
-                throw entityValidationFailedAppEx;
-            }
-            catch (System.Exception systemEx)
-            {
-                _logger.LogDebug(systemEx, "");
-                _logger.LogInformation(systemEx, "");
-                throw new RepositoryAppException(systemEx);
-            }
+            var entity = new TEntity { Id = entityId };
+            _dbContext.Set<TEntity>().Attach(entity);
+            updateAction(entity);
         }
 
-        public async Task DeleteAsync(TId entityId)
+        public void Delete(TId entityId)
         {
-            try
+            var entity = new TEntity { Id = entityId };
+            _dbContext.Set<TEntity>().Attach(entity);
+            _dbContext.Set<TEntity>().Remove(entity);
+        }
+
+        public void SoftDelete<TSoftDeletable>(TId entityId)
+            where TSoftDeletable : TEntity, ISoftDeletable, new()
+        {
+            var entity = new TSoftDeletable
             {
-                var entity = await GetByIdIfNotNullAsync(entityId);
-                _dbContext.Set<TEntity>().Remove(entity);
-            }
-            catch (System.Exception systemEx)
-            {
-                _logger.LogDebug(systemEx, "");
-                _logger.LogInformation(systemEx, "");
-                throw new RepositoryAppException(systemEx);
-            }
+                Id = entityId,
+                IsDeleted = false
+            };
+            _dbContext.Set<TEntity>().Attach(entity);
+            entity.IsDeleted = true;
         }
 
         public async Task<List<TResult>> FindAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
             Expression<Func<TEntity, bool>> predicate,
             bool isAsNoTracking)
         {
-            try
+            if (isAsNoTracking == true)
             {
-                if (isAsNoTracking == true)
-                {
-                    var entitiesNoTracking = await _dbContext.Set<TEntity>().Where(predicate).Select(selector).ToListAsync();
-                    return entitiesNoTracking;
-                }
-                var entitiesTracking = await _dbContext.Set<TEntity>().Where(predicate).Select(selector).ToListAsync();
-                return entitiesTracking;
+                var entitiesNoTracking = await _dbContext.Set<TEntity>().Where(predicate).Select(selector).ToListAsync();
+                return entitiesNoTracking;
             }
-            catch (System.Exception systemEx)
-            {
-                _logger.LogDebug(systemEx, "");
-                _logger.LogInformation(systemEx, "");
-                throw new RepositoryAppException(systemEx);
-            }
-        }
-
-        public async Task SoftDeleteAsync<TSoftDeletable>(TId entityId)
-        where TSoftDeletable : TEntity, ISoftDeletable
-        {
-            try
-            {
-                // var entity = await GetISoftDeletableByIdIfNotNullAsync<TSoftDeletable>(entityId);
-                var entity = (ISoftDeletable)(await GetByIdIfNotNullAsync(entityId));
-                entity.IsDeleted = true;
-            }
-            catch (System.Exception systemEx)
-            {
-                _logger.LogDebug(systemEx, "");
-                _logger.LogInformation(systemEx, "");
-                throw new RepositoryAppException(systemEx);
-            }
+            var entitiesTracking = await _dbContext.Set<TEntity>().Where(predicate).Select(selector).ToListAsync();
+            return entitiesTracking;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -34,7 +34,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Varchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -50,8 +49,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("AddressId");
 
                     b.HasIndex("UserId");
@@ -64,7 +61,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("BirthDay")
                         .HasColumnType("Date");
@@ -88,7 +85,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -124,10 +120,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("EntityStatusId");
@@ -140,9 +132,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
-                    b.Property<int>("BaseImageId")
+                    b.Property<int?>("BaseImageId")
                         .HasColumnType("int");
 
                     b.Property<int>("ChildrenCount")
@@ -170,7 +162,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -202,7 +193,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("Varchar(100)");
 
-                    b.Property<int>("ThumbnailImageId")
+                    b.Property<int?>("ThumbnailImageId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -212,10 +203,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
 
                     b.HasAlternateKey("Name");
 
@@ -235,7 +222,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -249,7 +236,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -263,10 +249,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Varchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
 
                     b.HasAlternateKey("Name");
 
@@ -282,7 +264,10 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
+
+                    b.Property<int>("CountryOfOriginId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -306,7 +291,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -346,7 +330,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("StoreId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -357,11 +341,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
+
+                    b.HasIndex("CountryOfOriginId");
 
                     b.HasIndex("EntityStatusId");
 
@@ -381,7 +363,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -405,7 +387,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -458,10 +439,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("EntityStatusId");
@@ -476,7 +453,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -491,7 +468,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -513,8 +489,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("EavAttributeValueId");
 
                     b.HasIndex("EntityStatusId");
@@ -529,7 +503,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -543,7 +517,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -557,10 +530,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Varchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
 
                     b.HasAlternateKey("Name");
 
@@ -576,7 +545,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<string>("AddressLine1")
                         .HasMaxLength(1000)
@@ -586,20 +555,25 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("Nvarchar(1000)");
 
-                    b.Property<int>("CommuneId")
+                    b.Property<int?>("CommuneId")
                         .HasColumnType("int");
 
                     b.Property<string>("ContactName")
                         .HasMaxLength(1000)
                         .HasColumnType("Nvarchar(1000)");
 
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("DisplayName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("Nvarchar(100)");
 
+                    b.Property<int?>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -611,6 +585,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(100)
                         .HasColumnType("Varchar(100)");
+
+                    b.Property<int?>("ProvinceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Slug")
                         .HasMaxLength(100)
@@ -624,13 +601,15 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("CommuneId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("ProvinceId");
 
                     b.ToTable("Core_Addresses");
                 });
@@ -640,7 +619,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -651,7 +630,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -665,10 +643,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Varchar(3000)");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
 
                     b.HasAlternateKey("Name");
 
@@ -682,7 +656,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -690,7 +664,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -704,10 +677,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Varchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
 
                     b.HasAlternateKey("Name");
 
@@ -719,9 +688,10 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn();
 
                     b.Property<string>("BackendName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("Nvarchar(100)");
 
@@ -731,7 +701,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -746,13 +715,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
-                    b.ToTable("Core_DataTypes");
+                    b.ToTable("Core_DataTypeConsts");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.District", b =>
@@ -760,7 +725,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -768,7 +733,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -786,10 +750,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("ProvinceId");
@@ -802,7 +762,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -826,7 +786,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -862,10 +821,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("DocumentTypeId");
@@ -880,7 +835,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn();
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -892,7 +847,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -911,13 +865,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
-                    b.ToTable("Core_DocumentTypes");
+                    b.ToTable("Core_DocumentTypeConsts");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", b =>
@@ -925,15 +875,17 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn();
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
                         .HasMaxLength(3000)
                         .HasColumnType("Nvarchar(3000)");
 
+                    b.Property<int>("EntityTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -948,13 +900,11 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
-                    b.ToTable("Core_EntityStatuses");
+                    b.HasIndex("EntityTypeId");
+
+                    b.ToTable("Core_EntityStatusConsts");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityType", b =>
@@ -962,7 +912,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn();
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -970,7 +920,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -988,13 +937,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
-                    b.ToTable("Core_EntityTypes");
+                    b.ToTable("Core_EntityTypeConsts");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Province", b =>
@@ -1002,7 +947,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
@@ -1013,7 +958,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1028,10 +972,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("CountryId");
@@ -1044,7 +984,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -1073,7 +1013,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1100,10 +1039,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("DataTypeId");
@@ -1124,7 +1059,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("EavAttributeId")
                         .HasColumnType("int");
@@ -1146,7 +1081,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn();
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -1154,7 +1089,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1169,13 +1103,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
-                    b.ToTable("Eav_EavAttributeGroups");
+                    b.ToTable("Eav_EavAttributeGroupConsts");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Eav.EavAttributeSet", b =>
@@ -1183,7 +1113,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -1191,7 +1121,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(100)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1205,10 +1134,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Varchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
 
                     b.HasAlternateKey("Name");
 
@@ -1220,7 +1145,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -1235,7 +1160,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1254,8 +1178,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("EavAttributeId");
 
                     b.HasIndex("EntityStatusId");
@@ -1268,7 +1190,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int?>("CommuneId")
                         .HasColumnType("int");
@@ -1290,7 +1212,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1321,8 +1242,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("CommuneId");
 
                     b.HasIndex("DistricId");
@@ -1341,7 +1260,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("BillingAddressingId")
                         .HasColumnType("int");
@@ -1359,7 +1278,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1403,8 +1321,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("BillingAddressingId");
 
                     b.HasIndex("EntityStatusId");
@@ -1423,7 +1339,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -1435,7 +1351,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1470,8 +1385,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("EntityStatusId");
 
                     b.HasIndex("OrderId");
@@ -1486,7 +1399,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("BuyerId")
                         .HasColumnType("int");
@@ -1501,7 +1414,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1529,8 +1441,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("EntityStatusId");
 
                     b.HasIndex("ParentId");
@@ -1547,7 +1457,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -1559,7 +1469,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1587,8 +1496,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("EntityStatusId");
 
                     b.HasIndex("ProductItemId");
@@ -1603,7 +1510,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -1627,7 +1534,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1659,10 +1565,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("AddressId");
@@ -1677,7 +1579,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -1692,7 +1594,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1717,8 +1618,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasIndex("EntityStatusId");
 
                     b.HasIndex("GlobalProductCategoryId");
@@ -1733,7 +1632,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("Datetime");
@@ -1750,7 +1649,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1787,10 +1685,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("DisplayName");
-
-                    b.HasAlternateKey("GlobalCode");
-
                     b.HasAlternateKey("Name");
 
                     b.HasIndex("EntityStatusId");
@@ -1807,7 +1701,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn(100001, 100001);
+                        .UseIdentityColumn(10001);
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("Decimal(19,2)");
@@ -1826,7 +1720,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("Nvarchar(3000)");
 
                     b.Property<string>("GlobalCode")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("Varchar(12)");
 
@@ -1850,8 +1743,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("GlobalCode");
 
                     b.HasIndex("EntityStatusId");
 
@@ -1895,8 +1786,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Document", "BaseImage")
                         .WithMany()
                         .HasForeignKey("BaseImageId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", "EntityStatus")
                         .WithMany()
@@ -1912,8 +1802,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Document", "ThumbnailImage")
                         .WithMany()
                         .HasForeignKey("ThumbnailImageId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("BaseImage");
 
@@ -1945,6 +1834,12 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Product", b =>
                 {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Country", "CountryOfOrigin")
+                        .WithMany()
+                        .HasForeignKey("CountryOfOriginId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", "EntityStatus")
                         .WithMany()
                         .HasForeignKey("EntityStatusId")
@@ -1972,8 +1867,9 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog.Supplier", "Supplier")
                         .WithMany()
                         .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("CountryOfOrigin");
 
                     b.Navigation("EntityStatus");
 
@@ -2054,12 +1950,32 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Address", b =>
                 {
                     b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Commune", "Commune")
-                        .WithMany("Addresses")
+                        .WithMany()
                         .HasForeignKey("CommuneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.District", "District")
+                        .WithMany()
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Province", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Commune");
+
+                    b.Navigation("Country");
+
+                    b.Navigation("District");
+
+                    b.Navigation("Province");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Commune", b =>
@@ -2101,6 +2017,17 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Navigation("DocumentType");
 
                     b.Navigation("EntityStatus");
+                });
+
+            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityStatus", b =>
+                {
+                    b.HasOne("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.EntityType", "EntityType")
+                        .WithMany()
+                        .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("EntityType");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Province", b =>
@@ -2489,11 +2416,6 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Migrations
                     b.Navigation("OrderItems");
 
                     b.Navigation("ProductItemDetails");
-                });
-
-            modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Commune", b =>
-                {
-                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("svietnamAPI.Infras.Data.DatabaseContext.Entities.Core.Country", b =>

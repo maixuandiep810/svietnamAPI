@@ -8,8 +8,8 @@
 --
 --
 USE svietnam_1_1;
-BULK INSERT EntityTypes
-FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/EntityTypes.csv'
+BULK INSERT Core_EntityTypeConsts
+FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/EntityTypeConsts.csv'
 WITH
 (
 	KEEPIDENTITY,
@@ -20,8 +20,8 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT DataTypes
-FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/DataTypes.csv'
+BULK INSERT Core_DataTypeConsts
+FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/DataTypeConsts.csv'
 WITH
 (
 	KEEPIDENTITY,
@@ -32,8 +32,8 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT EntityStatuses
-FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/EntityStatus.csv'
+BULK INSERT Core_EntityStatusConsts
+FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/EntityStatusConsts.csv'
 WITH
 (
 	KEEPIDENTITY,
@@ -44,8 +44,8 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT DocumentTypes
-FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/DocumentTypes.csv'
+BULK INSERT Core_DocumentTypeConsts
+FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/DocumentTypeConsts.csv'
 WITH
 (
 	KEEPIDENTITY,
@@ -56,7 +56,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Documents
+BULK INSERT Core_Documents
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/Documents.csv'
 WITH
 (
@@ -68,7 +68,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Provinces
+BULK INSERT Core_Provinces
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/Provinces.csv'
 WITH
 (
@@ -80,7 +80,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Districts
+BULK INSERT Core_Districts
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/Districts.csv'
 WITH
 (
@@ -92,7 +92,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Communes
+BULK INSERT Core_Communes
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/Communes.csv'
 WITH
 (
@@ -104,7 +104,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Addresses
+BULK INSERT Core_Addresses
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Core/Addresses.csv'
 WITH
 (
@@ -125,8 +125,8 @@ WITH
 -- 
 -- 
 USE svietnam_1_1;
-BULK INSERT EavAttributeGroups
-FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Eav/EavAttributeGroups.csv'
+BULK INSERT Eav_EavAttributeGroupConsts
+FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Eav/EavAttributeGroupConsts.csv'
 WITH
 (
 	KEEPIDENTITY,
@@ -137,7 +137,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT EavAttributes
+BULK INSERT Eav_EavAttributes
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Eav/EavAttributes.csv'
 WITH
 (
@@ -149,7 +149,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT EavAttributeSets
+BULK INSERT Eav_EavAttributeSets
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Eav/EavAttributeSets.csv'
 WITH
 (
@@ -161,7 +161,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT EavAttributeEavAttributeSetMappings
+BULK INSERT Eav_EavAttributeEavAttributeSetMappings
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Eav/EavAttributeEavAttributeSetMappings.csv'
 WITH
 (
@@ -173,7 +173,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT EavAttributeValues
+BULK INSERT Eav_EavAttributeValues
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Eav/EavAttributeValues.csv'
 WITH
 (
@@ -194,7 +194,7 @@ WITH
 -- 
 -- 
 USE svietnam_1_1;
-BULK INSERT Categories
+BULK INSERT Catalog_Categories
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Catalog/Categories.csv'
 WITH
 (
@@ -208,7 +208,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Manufacturers
+BULK INSERT Catalog_Manufacturers
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Catalog/Manufacturers.csv'
 WITH
 (
@@ -222,7 +222,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Suppliers
+BULK INSERT Catalog_Suppliers
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Catalog/Suppliers.csv'
 WITH
 (
@@ -236,7 +236,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT Products
+BULK INSERT Catalog_Products
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Catalog/Products.csv'
 WITH
 (
@@ -250,7 +250,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT ProductItems
+BULK INSERT Catalog_ProductItems
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Catalog/ProductItems.csv'
 WITH
 (
@@ -264,7 +264,7 @@ WITH
     TABLOCK
 );
 USE svietnam_1_1;
-BULK INSERT ProductItemDetails
+BULK INSERT Catalog_ProductItemDetails
 FROM '/home/p/Desktop/svietnam/svietnamAPI/Infras/Data/DatabaseContext/SeedingData/CsvDocuments/Catalog/ProductItemDetails.csv'
 WITH
 (

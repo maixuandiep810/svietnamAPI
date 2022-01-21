@@ -1,56 +1,93 @@
 using System.Collections.Generic;
-using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
-using svietnamAPI.Common.Exceptions.Repositories;
 using svietnamAPI.Infras.Data.DatabaseContext;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
 using svietnamAPI.Models.IRepositories.Catalog;
 using System.Linq;
-using svietnamAPI.Common.Dtos.Values.EntityValidationMessage.Catalog;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-
+using svietnamAPI.Common.Dtos.DtoToEntities.Catalog;
+using System.Linq.Expressions;
+using System;
 
 namespace svietnamAPI.Models.Repositories.Catalog
 {
-    public class GlobalProductCategoryDbRepository : GenericDbRepository<GlobalProductCategory, int>, 
+    public class GlobalProductCategoryDbRepository : GenericDbRepository<GlobalProductCategory, int>,
         IGlobalProductCategoryDbRepository
     {
-        public GlobalProductCategoryDbRepository(AppDbContext dbContext, 
-            IValidator<GlobalProductCategory> validator, 
-            IMapper mapper, 
-            ILogger<GlobalProductCategoryDbRepository> logger) 
+        public GlobalProductCategoryDbRepository(AppDbContext dbContext,
+            IValidator<GlobalProductCategory> validator,
+            IMapper mapper,
+            ILogger<GlobalProductCategoryDbRepository> logger)
             : base(dbContext, validator, mapper, logger)
         {
         }
 
-        public async Task SoftDeleteAsync(int entityId)
+        public async Task<List<GlobalProductCategorySummaryDto>> GetSummaryAllOrNullAsync()
         {
-            await SoftDeleteAsync<GlobalProductCategory>(entityId);
+            var globalPCSummaryDtos = await FindSummaryAllOrNullAsync(p => true, true);
+            return globalPCSummaryDtos;
         }
 
-        public async Task<List<GlobalProductCategory>> GetAllAsync(bool isIncludeImage)
+        public async Task<GlobalProductCategorySummaryDto> GetSummaryByIdOrNullAsync(int gpcId)
         {
-            try
+            var globalPCSummaryDto = (await FindSummaryAllOrNullAsync(p => p.Id == gpcId, true))?.First();
+            return globalPCSummaryDto;
+        }
+
+        public async Task<List<GlobalProductCategory>> GetDetailAllOrNullAsync(bool shouldIncludeImage)
+        {
+            var globalPCEntities = await FindDetailAllOrNullAsync(p => true, true, true);
+            return globalPCEntities;
+        }
+
+        public async Task<GlobalProductCategory> GetDetailByIdOrNullAsync(int gpcId, bool shouldIncludeImage)
+        {
+            var globalPCEntity = (await FindDetailAllOrNullAsync(p => p.Id == gpcId, true, true))?.First();
+            return globalPCEntity;
+        }
+
+        public async Task<List<GlobalProductCategorySummaryDto>> FindSummaryAllOrNullAsync(Expression<Func<GlobalProductCategory, bool>> predicate,
+            bool isAsNoTracking)
+        {
+            var globalPCSummaryDtoQueryable = _dbContext.Set<GlobalProductCategory>()
+                .Where(predicate)
+                .Select(
+                    p => _mapper.Map<GlobalProductCategory, GlobalProductCategorySummaryDto>(p)
+                );
+            //
+            if (isAsNoTracking)
             {
-                if (isIncludeImage == false)
-                {
-                    var simpleCategories = await GetAllAsync();
-                    return simpleCategories;
-                }
-                var categories_Image = await _dbContext.Set<GlobalProductCategory>().Select(p => p)
-                    .AsNoTracking()
-                    .Include(p => p.BaseImage)
-                    .Include(p => p.ThumbnailImage)
-                    .ToListAsync();
-                return categories_Image;
+                globalPCSummaryDtoQueryable = globalPCSummaryDtoQueryable.AsNoTracking();
             }
-            catch (System.Exception systemEx)
+            //
+            var globalPCSummaryDtos = await globalPCSummaryDtoQueryable.ToListAsync();
+            return globalPCSummaryDtos;
+        }
+
+        public async Task<List<GlobalProductCategory>> FindDetailAllOrNullAsync(Expression<Func<GlobalProductCategory, bool>> predicate,
+            bool isAsNoTracking,
+            bool shouldIncludeImage)
+        {
+            //
+            IQueryable<GlobalProductCategory> globalPCsQueryable = _dbContext.Set<GlobalProductCategory>()
+                .Where(predicate)
+                .Select(p => p);
+            if (isAsNoTracking)
             {
-                throw new RepositoryAppException(systemEx);
+                globalPCsQueryable = globalPCsQueryable.AsNoTracking();
             }
+            //
+            if (shouldIncludeImage)
+            {
+                globalPCsQueryable = globalPCsQueryable.Include(p => p.BaseImage)
+                    .Include(p => p.ThumbnailImage);
+            }
+            //
+            var globalPCEntities = await globalPCsQueryable.ToListAsync();
+            return globalPCEntities;
         }
     }
 }

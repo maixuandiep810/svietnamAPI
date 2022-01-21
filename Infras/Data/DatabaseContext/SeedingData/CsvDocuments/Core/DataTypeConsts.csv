@@ -1,0 +1,7 @@
+"Id","GlobalCode","Name","DisplayName","Slug","BackendName"
+10001,,"Int","Int – Số nguyên","int-so-nguyen","Int"
+10002,,"Double","Double - Số thập phân ","double-so-thap-phan","Double"
+10003,,"DateTime","DateTime – Ngày giờ","datetime-ngay-gio","DateTime"
+10004,,"Nvarchar","String – Chuỗi","string-chuoi","String"
+10005,,"Bool","Bool – Nhị phân","bool-nhi-phan","Bool"
+10006,,"Float","Float – Số thập phân","float-so-thap-phan","Float"

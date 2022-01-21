@@ -9,5 +9,7 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.Entities.Core
         public string Name { get; set; }
         public string DisplayName { get; set; }
         public string Slug { get; set; }
+        public int EntityTypeId { get; set; }
+        public EntityType EntityType { get; set; }
     }
 }

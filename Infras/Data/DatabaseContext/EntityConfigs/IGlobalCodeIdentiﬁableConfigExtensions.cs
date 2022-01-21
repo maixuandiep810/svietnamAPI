@@ -11,11 +11,12 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs
             EntityTypeBuilder<TEntity> builder)
             where TEntity : class, IGlobalCodeIdentiﬁable
         {
-            builder.HasAlternateKey(p => p.GlobalCode);
+            // builder.HasAlternateKey(p => p.GlobalCode);
             
             builder.Property(t => t.GlobalCode)
                     .HasColumnType(ColumnTypeConst.Varchar)
-                    .HasMaxLength(12);
+                    .HasMaxLength(12)
+                    .IsRequired(false);
         }
     }
 }

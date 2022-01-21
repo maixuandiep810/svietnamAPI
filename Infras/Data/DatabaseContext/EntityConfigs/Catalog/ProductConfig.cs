@@ -37,6 +37,10 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Catalog
                     .WithMany(p => p.Products)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasForeignKey(p => p.StoreId);
+            builder.HasOne(p => p.CountryOfOrigin)
+                    .WithMany()
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasForeignKey(p => p.CountryOfOriginId);
             builder.HasOne(p => p.Manufacturer)
                     .WithMany()
                     .OnDelete(DeleteBehavior.Restrict)

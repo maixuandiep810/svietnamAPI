@@ -1,0 +1,12 @@
+"Id","GlobalCode","Name","DisplayName","Slug","EntityTypeId"
+13101,,"Product_Enabled","Đã bật","enabled-da-bat",13104
+13102,,"Product_Disabled","Đã tắt","disabled-da-tat",13104
+13103,,"Product_Approved","Đã duyệt","approved-da-duyet",13104
+13104,,"Product_Pending","Chờ duyệt","pending-cho-duyet",13104
+13105,,"Product_Banned","Đã bị cấm","banned-da-bi-cam",13104
+13111,,"GlobalProductCategory_Enabled","Đã bật","enabled-da-bat",13101
+13112,,"GlobalProductCategory_Disabled","Đã tắt","disabled-da-tat",13101
+13113,,"GlobalProductCategory_Approved","Đã duyệt","approved-da-duyet",13101
+13114,,"GlobalProductCategory_Pending","Chờ duyệt","pending-cho-duyet",13101
+11101,,"Document-Approved","Đã duyệt","approved-da-duyet",11104
+11102,,"Document_Pending","Chờ duyệt","approved-cho-duyet",11104

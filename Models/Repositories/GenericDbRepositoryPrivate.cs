@@ -15,7 +15,7 @@ namespace svietnamAPI.Models.Repositories
 {
     public abstract partial class GenericDbRepository<TEntity, TId> : IGenericDbRepository<TEntity, TId>
     where TId : struct
-    where TEntity : class, IBaseEntity<TId>
+    where TEntity : class, IBaseEntity<TId>, new()
     {
         private async Task<TSoftDeletable> GetISoftDeletableByIdIfNotNullAsync<TSoftDeletable>(TId entityId)
         where TSoftDeletable : TEntity, ISoftDeletable

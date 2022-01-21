@@ -1,0 +1,8 @@
+
+GlobalProductCategoryDefaultFieldDto
+1. GlobalCode, Slug
+2. Image Upload # Image Url, null FormFile
+3. Children
+4. nullId
+5. CreateBy
+6. StatusId

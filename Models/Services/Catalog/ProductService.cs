@@ -7,11 +7,11 @@ using svietnamAPI.Models.IUnitOfWorks;
 using svietnamAPI.Models.IServices.Catalog;
 using svietnamAPI.Models.IRepositories.Catalog;
 using svietnamAPI.Infras.Data.DatabaseContext.Entities.Catalog;
-using svietnamAPI.Common.Dtos.Catalog.Product;
+using svietnamAPI.Common.Dtos.DtoToEntities.Catalog;
 
 namespace svietnamAPI.Models.Services.Catalog
 {
-    public class ProductService : GenericService<Product, int, IProductDbRepository>,
+    public class ProductService : GenericService<Product, int, IProductDbRepository, ProductDto>,
         IProductService
     {
         public ProductService(IMapper mapper,
@@ -27,15 +27,10 @@ namespace svietnamAPI.Models.Services.Catalog
 
         }
 
-        public async Task<List<TDto>> GetAllAsync<TDto>(bool isIncludeProductItem,
-            bool isIncludeProductItemDetail,
-            bool isIncludeEavValue)
-            where TDto : ProductDto
+        public async Task<List<ProductDto>> GetFullAllOrNullAsync(bool shouldIncludeProductItem)
         {
-            var productEntites = await _tDbRepo.GetAllAsync(isIncludeProductItem,
-                isIncludeProductItemDetail,
-                isIncludeEavValue);
-            var productDtos = _mapper.Map<List<TDto>>(productEntites);
+            var productEntites = await _tDbRepo.GetFullAllOrNullAsync(shouldIncludeProductItem);
+            var productDtos = _mapper.Map<List<ProductDto>>(productEntites);
             return productDtos;
         }
     }

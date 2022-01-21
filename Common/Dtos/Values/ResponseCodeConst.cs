@@ -40,8 +40,8 @@ namespace svietnamAPI.Common.Dtos.Values
         /// Catalog: Success Message -> 62001 - 62999 ->  001 - 999
         /// </summary>
 
-        /// Category -> 62001 -> 62099
-        public const string S62001 = "Thành công: Tạo Danh mục";
+        /// GlobalProductCategory -> 62001 -> 62099
+        public const string S62001 = "Thành công: Tạo Danh mục sản phẩm của hệ thống.";
         public const string S62002 = "Thành công: Cập nhật ...";
     }
 }

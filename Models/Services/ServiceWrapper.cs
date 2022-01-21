@@ -19,7 +19,7 @@ namespace svietnamAPI.Models.Services
         //  Catalog
         //
         //
-        private ICategoryService _categoryService { get; set; }
+        private IGlobalProductCategoryService _globalProductCategoryService { get; set; }
         private IProductService _productService { get; set; }
 
         //
@@ -27,16 +27,16 @@ namespace svietnamAPI.Models.Services
         //  Catalog
         //
         //
-        public ICategoryService CategoryService
+        public IGlobalProductCategoryService GlobalProductCategoryService
         {
             get
             {
-                if (_categoryService == null)
+                if (_globalProductCategoryService == null)
                 {
-                    var loggerCategoryService = (ILogger<CategoryService>)_serviceProvider.GetService(typeof(ILogger<CategoryService>));
-                    _categoryService = new CategoryService(_mapper, _unitOfWork, this, loggerCategoryService);
+                    var loggerGlobalProductCategoryService = (ILogger<GlobalProductCategoryService>)_serviceProvider.GetService(typeof(ILogger<GlobalProductCategoryService>));
+                    _globalProductCategoryService = new GlobalProductCategoryService(_mapper, _unitOfWork, this, loggerGlobalProductCategoryService);
                 }
-                return _categoryService;
+                return _globalProductCategoryService;
             }
         }
 

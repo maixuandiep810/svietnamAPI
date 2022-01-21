@@ -1,0 +1,11 @@
+        public async Task CommitAsync()
+        {
+            try
+            {
+                await _appDbContext.SaveChangesAsync();
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }

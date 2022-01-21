@@ -12,9 +12,10 @@ namespace svietnamAPI.Infras.Data.DatabaseContext.EntityConfigs.Core
     {
         public void Configure(EntityTypeBuilder<DataType> builder)
         {
-            builder.ToTable(TableNameConst.DataTypes);
+            builder.ToTable(TableNameConst.DataTypeConsts);
             
-            this.BaseEntityIntPKConfigure(builder);
+            this.BaseEntityIntPKConfigure(builder: builder, 
+                shouldUseIdentityColumn: false);
             this.GlobalCodeIdentiﬁableConfigure(builder);
             this.NameIdentiﬁableConfigure(builder: builder,
                 maxLengthOfName: 100,
